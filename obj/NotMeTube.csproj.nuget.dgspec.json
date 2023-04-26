@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pinto\\workspace\\NotMeTube\\NotMeTube.csproj": {}
+    "C:\\Users\\Pinto\\workspace\\Not-Me-Tube\\NotMeTube.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pinto\\workspace\\NotMeTube\\NotMeTube.csproj": {
+    "C:\\Users\\Pinto\\workspace\\Not-Me-Tube\\NotMeTube.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pinto\\workspace\\NotMeTube\\NotMeTube.csproj",
+        "projectUniqueName": "C:\\Users\\Pinto\\workspace\\Not-Me-Tube\\NotMeTube.csproj",
         "projectName": "NotMeTube",
-        "projectPath": "C:\\Users\\Pinto\\workspace\\NotMeTube\\NotMeTube.csproj",
+        "projectPath": "C:\\Users\\Pinto\\workspace\\Not-Me-Tube\\NotMeTube.csproj",
         "packagesPath": "C:\\Users\\Pinto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pinto\\workspace\\NotMeTube\\obj\\",
+        "outputPath": "C:\\Users\\Pinto\\workspace\\Not-Me-Tube\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Pinto\\AppData\\Roaming\\NuGet\\NuGet.Config",

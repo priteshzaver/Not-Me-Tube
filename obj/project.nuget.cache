@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XpufOPHa+pEPzcToyywnQsFTyTGAyDuDIwF42EkmxdAGRTea5kprgisouD6BJymwHVuwiAWGS0LXZ1EMI8tOhA==",
+  "dgSpecHash": "te4y4AnkMJXIhjNGu5WycgOFQWAHpNSIWfUkqE/ITfBVSZigw9s6uazBESqWGBGoWX/If+yclk+RvIV8yIijsw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Pinto\\workspace\\NotMeTube\\NotMeTube.csproj",
+  "projectFilePath": "C:\\Users\\Pinto\\workspace\\Not-Me-Tube\\NotMeTube.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pinto\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.17\\microsoft.aspnetcore.authentication.jwtbearer.5.0.17.nupkg.sha512",
     "C:\\Users\\Pinto\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
