@@ -1,18 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { BrowserRouter } from "react-router-dom";
 import { NotMeTube } from "./NotMeTube";
-import { Provider } from "react-redux";
-import store from "./store";
+import firebase from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_API_KEY,
+};
+firebase.initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <React.StrictMode>
-      <Provider store={store}>
-        <NotMeTube />
-      </Provider>
-    </React.StrictMode>
-  </BrowserRouter>
+  <React.StrictMode>
+    <NotMeTube />
+  </React.StrictMode>
 );

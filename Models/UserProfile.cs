@@ -14,5 +14,6 @@ namespace NotMeTube.Models
         public string ImageLocation { get; set; }
         public int UserTypeId { get; set; }
         public bool IsActive { get; set; }
+        public UserType UserType { get; set; }
     }
 }
