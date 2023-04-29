@@ -43,7 +43,7 @@ namespace NotMeTube
                 });
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tabloid", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "NotMeTube", Version = "v1" });
 
                 var securitySchema = new OpenApiSecurityScheme
                 {

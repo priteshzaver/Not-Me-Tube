@@ -71,3 +71,9 @@ C:\Users\Pinto\workspace\Not-Me-Tube\obj\Debug\net5.0\refint\NotMeTube.dll
 C:\Users\Pinto\workspace\Not-Me-Tube\obj\Debug\net5.0\NotMeTube.pdb
 C:\Users\Pinto\workspace\Not-Me-Tube\obj\Debug\net5.0\NotMeTube.genruntimeconfig.cache
 C:\Users\Pinto\workspace\Not-Me-Tube\obj\Debug\net5.0\ref\NotMeTube.dll
+C:\Users\Pinto\workspace\Not-Me-Tube\bin\Debug\net5.0\Google.Apis.dll
+C:\Users\Pinto\workspace\Not-Me-Tube\bin\Debug\net5.0\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Pinto\workspace\Not-Me-Tube\bin\Debug\net5.0\Google.Apis.Auth.dll
+C:\Users\Pinto\workspace\Not-Me-Tube\bin\Debug\net5.0\Google.Apis.Core.dll
+C:\Users\Pinto\workspace\Not-Me-Tube\bin\Debug\net5.0\Google.Apis.YouTube.v3.dll
+C:\Users\Pinto\workspace\Not-Me-Tube\bin\Debug\net5.0\Newtonsoft.Json.dll

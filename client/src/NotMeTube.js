@@ -4,9 +4,10 @@ import { BrowserRouter } from "react-router-dom";
 import { ApplicationViews } from "./ApplicationViews";
 import { useEffect, useState } from "react";
 import { getUserDetails, onLoginStatusChange } from "./modules/authManager";
+import { Header } from "./Header";
 
 export const NotMeTube = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [role, setRole] = useState("");
 
   useEffect(() => {
@@ -25,7 +26,8 @@ export const NotMeTube = () => {
 
   return (
     <BrowserRouter>
-      <ApplicationViews />
+      <Header isLoggedIn={isLoggedIn} role={role} />
+      <ApplicationViews isLoggedIn={isLoggedIn} role={role} />
     </BrowserRouter>
   );
 };

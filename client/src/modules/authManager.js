@@ -4,7 +4,13 @@ import { getParameters } from "../helpers/apiHelpers";
 
 const userProfileUrl = "/api/userprofile";
 
-export const getToken = () => firebase.auth().currentUser.getIdToken();
+export const getToken = () => {
+  const currentUser = firebase.auth().currentUser;
+  if (!currentUser) {
+    throw new Error("Cannot get current user. Did you forget to login?");
+  }
+  return currentUser.getIdToken();
+};
 
 export const getUserDetails = (firebaseUserId) => {
   return getToken().then((token) => {
@@ -18,7 +24,7 @@ export const getUserDetails = (firebaseUserId) => {
 const doesUserExist = (firebaseUserId) => {
   return getToken().then((token) => {
     return fetch(
-      `${userProfileUrl}/DoesUserExist${firebaseUserId}`,
+      `${userProfileUrl}/DoesUserExist/${firebaseUserId}`,
       getParameters(token)
     ).then((res) => res.json());
   });
@@ -36,6 +42,8 @@ export const login = (email, pw) => {
         throw new Error(
           "Something's wrong. The user exists in firebase, but not in the application database."
         );
+      } else {
+        _onLoginStatusChangedHandler(true);
       }
     })
     .catch((err) => {
@@ -48,8 +56,25 @@ export const logout = () => {
   firebase.auth().signOut();
 };
 
-export const onLoginStatusChange = (onLoginStatusChangeHandler) => {
-  firebase.auth().onAuthStateChanged((user) => {
-    onLoginStatusChangeHandler(!!user);
-  });
+let _onLoginStatusChangedHandler = () => {
+  throw new Error(
+    "There's no login status change handler. Did you forget to call 'onLoginStatusChange()'?"
+  );
+};
+
+export const onLoginStatusChange = (onLoginStatusChangedHandler) => {
+  const unsubscribeFromInitialLoginCheck = firebase
+    .auth()
+    .onAuthStateChanged(function initialLoadLoginCheck(user) {
+      unsubscribeFromInitialLoginCheck();
+      onLoginStatusChangedHandler(!!user);
+
+      firebase.auth().onAuthStateChanged(function logoutCheck(user) {
+        if (!user) {
+          onLoginStatusChangedHandler(false);
+        }
+      });
+    });
+
+  _onLoginStatusChangedHandler = onLoginStatusChangedHandler;
 };
