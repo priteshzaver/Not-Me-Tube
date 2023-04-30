@@ -2,25 +2,29 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { Login } from "./components/Login";
 import { VideoList } from "./components/VideoList";
 import { SearchBar } from "./components/SearchBar";
+import { SecureRoute } from "./SecureRoute"
 
 export const ApplicationViews = ({ isLoggedIn }) => {
   return (
     <main>
       <Routes>
-        <Route exact path="/">
-          <Route index element={<SearchBar />} />
-          <Route path="login" element={<Login />} />
-          <Route path="videos">
-            <Route
-              index
-              element={isLoggedIn ? <VideoList /> : <Navigate to="login" />}
-            />
-          </Route>
+        <Route path="/">
+        <Route
+          path="SearchBar"
+          element={<SecureRoute element={ <SearchBar/>} /> }
+        />
+        <Route path="login" element={<Login />} />
+
         </Route>
-        <Route path="*" element={<p>Whoops, nothing here...</p>} />
       </Routes>
     </main>
   );
 };
 
+// <Route path="videos">
+//   <Route
+//     index
+//     element={isLoggedIn ? <VideoList /> : <Navigate to="login" />}
+//   />
+// </Route>
 // {isLoggedIn ? <SearchBar /> : <Navigate to="login" />}

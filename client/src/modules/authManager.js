@@ -33,22 +33,27 @@ const doesUserExist = (firebaseUserId) => {
 export const login = (email, pw) => {
   return firebase
     .auth()
-    .signInWithEmailAndPassword(email, pw)
-    .then((signInResponse) => doesUserExist(signInResponse.user.uid))
-    .then((doesUserExistResponse) => {
-      if (!doesUserExistResponse) {
-        logout();
+    .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(() => {
+      return firebase
+        .auth()
+        .signInWithEmailAndPassword(email, pw)
+        .then((signInResponse) => doesUserExist(signInResponse.user.uid))
+        .then((doesUserExistResponse) => {
+          if (!doesUserExistResponse) {
+            logout();
 
-        throw new Error(
-          "Something's wrong. The user exists in firebase, but not in the application database."
-        );
-      } else {
-        _onLoginStatusChangedHandler(true);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      throw err;
+            throw new Error(
+              "Something's wrong. The user exists in firebase, but not in the application database."
+            );
+          } else {
+            _onLoginStatusChangedHandler(true);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          throw err;
+        });
     });
 };
 
