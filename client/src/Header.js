@@ -1,8 +1,6 @@
-import { logout } from "./modules/authManager";
-
 export const Header = ({ isLoggedIn, role }) => {
 	return (
-		<header className="border-2">
+		<header className="sticky top-0 z-10 flex h-14 flex-row items-center justify-between px-4 md:px-5">
 			<nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
 				{isLoggedIn && (
 					<>
@@ -10,9 +8,6 @@ export const Header = ({ isLoggedIn, role }) => {
 							<a href="/">
 								<span>Not Me Tube</span>
 							</a>
-						</div>
-						<div>
-							<button onClick={logout}>Logout</button>
 						</div>
 					</>
 				)}
