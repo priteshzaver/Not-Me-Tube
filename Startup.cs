@@ -23,6 +23,7 @@ namespace NotMeTube
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+            services.AddTransient<IVideoRepository, VideoRepository>();
 
             services.AddControllers();
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
@@ -43,7 +44,7 @@ namespace NotMeTube
                 });
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tabloid", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "NotMeTube", Version = "v1" });
 
                 var securitySchema = new OpenApiSecurityScheme
                 {

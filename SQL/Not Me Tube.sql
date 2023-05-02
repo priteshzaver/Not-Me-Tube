@@ -47,7 +47,7 @@ CREATE TABLE [Video] (
   [Id] int PRIMARY KEY IDENTITY(1, 1),
   [Title] nvarchar(255) NOT NULL,
   [Description] nvarchar(MAX),
-  [Url] nvarchar(255) NOT NULL,
+  [YouTubeVideoId] nvarchar(255) NOT NULL,
   [DateCreated] dateTime NOT NULL,
   [UserProfileId] int NOT NULL,
   [IsApproved] bit NOT NULL
