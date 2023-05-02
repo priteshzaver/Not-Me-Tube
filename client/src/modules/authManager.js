@@ -1,85 +1,84 @@
 import firebase from "firebase/app";
 import "firebase/auth";
-import { getParameters } from "../helpers/apiHelpers";
 
-const userProfileUrl = "/api/userprofile";
+const _apiUrl = "/api/userprofile";
 
-export const getToken = () => {
-  const currentUser = firebase.auth().currentUser;
-  if (!currentUser) {
-    throw new Error("Cannot get current user. Did you forget to login?");
-  }
-  return currentUser.getIdToken();
+export const getUserDetails = (firebaseUUID) => {
+	return getToken().then((token) => {
+		return fetch(`${_apiUrl}/${firebaseUUID}`, {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		}).then((res) => res.json());
+	});
 };
 
-export const getUserDetails = (firebaseUserId) => {
-  return getToken().then((token) => {
-    return fetch(
-      `${userProfileUrl}/${firebaseUserId}`,
-      getParameters(token)
-    ).then((res) => res.json());
-  });
+const _doesUserExist = (firebaseUserId) => {
+	return getToken().then((token) =>
+		fetch(`${_apiUrl}/DoesUserExist/${firebaseUserId}`, {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		}).then((resp) => resp.json())
+	);
 };
 
-const doesUserExist = (firebaseUserId) => {
-  return getToken().then((token) => {
-    return fetch(
-      `${userProfileUrl}/DoesUserExist/${firebaseUserId}`,
-      getParameters(token)
-    ).then((res) => res.json());
-  });
+const _saveUser = (userProfile) => {
+	return getToken().then((token) =>
+		fetch(_apiUrl, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(userProfile),
+		}).then((resp) => resp.json())
+	);
 };
+
+export const getToken = () => firebase.auth().currentUser.getIdToken();
 
 export const login = (email, pw) => {
-  return firebase
-    .auth()
-    .setPersistence(firebase.auth.Auth.Persistence.SESSION)
-    .then(() => {
-      return firebase
-        .auth()
-        .signInWithEmailAndPassword(email, pw)
-        .then((signInResponse) => doesUserExist(signInResponse.user.uid))
-        .then((doesUserExistResponse) => {
-          if (!doesUserExistResponse) {
-            logout();
+	return firebase
+		.auth()
+		.signInWithEmailAndPassword(email, pw)
+		.then((signInResponse) => _doesUserExist(signInResponse.user.uid))
+		.then((doesUserExist) => {
+			if (!doesUserExist || !doesUserExist.isActive) {
+				// If we couldn't find the user in our app's database, or the user is deactivated, we should logout of firebase
+				logout();
 
-            throw new Error(
-              "Something's wrong. The user exists in firebase, but not in the application database."
-            );
-          } else {
-            _onLoginStatusChangedHandler(true);
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-          throw err;
-        });
-    });
+				throw new Error(
+					"Something's wrong. The user exists in firebase, but not in the application database. (User may be deactivated)"
+				);
+			}
+		})
+		.catch((err) => {
+			console.error(err);
+			throw err;
+		});
 };
 
 export const logout = () => {
-  firebase.auth().signOut();
+	firebase.auth().signOut();
 };
 
-let _onLoginStatusChangedHandler = () => {
-  throw new Error(
-    "There's no login status change handler. Did you forget to call 'onLoginStatusChange()'?"
-  );
+export const register = (userProfile, password) => {
+	return firebase
+		.auth()
+		.createUserWithEmailAndPassword(userProfile.email, password)
+		.then((createResponse) =>
+			_saveUser({
+				...userProfile,
+				firebaseUserId: createResponse.user.uid,
+			})
+		);
 };
 
-export const onLoginStatusChange = (onLoginStatusChangedHandler) => {
-  const unsubscribeFromInitialLoginCheck = firebase
-    .auth()
-    .onAuthStateChanged(function initialLoadLoginCheck(user) {
-      unsubscribeFromInitialLoginCheck();
-      onLoginStatusChangedHandler(!!user);
-
-      firebase.auth().onAuthStateChanged(function logoutCheck(user) {
-        if (!user) {
-          onLoginStatusChangedHandler(false);
-        }
-      });
-    });
-
-  _onLoginStatusChangedHandler = onLoginStatusChangedHandler;
+export const onLoginStatusChange = (onLoginStatusChangeHandler) => {
+	firebase.auth().onAuthStateChanged((user) => {
+		onLoginStatusChangeHandler(!!user);
+	});
 };

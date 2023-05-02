@@ -1,9 +1,14 @@
-﻿using NotMeTube.Models;
+﻿using System.Collections.Generic;
+using NotMeTube.Models;
 
 namespace NotMeTube.Repositories
 {
     public interface IUserProfileRepository
     {
-        public UserProfile GetByFirebaseUserId(string firebaseUserId);
+        void Add(UserProfile userProfile);
+        UserProfile GetByFirebaseUserId(string firebaseUserId);
+        List<UserProfile> GetUsers();
+        UserProfile GetById(int id);
+        void Update(UserProfile userProfile);
     }
 }

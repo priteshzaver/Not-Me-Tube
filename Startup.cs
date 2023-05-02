@@ -23,6 +23,7 @@ namespace NotMeTube
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+            services.AddTransient<IVideoRepository, VideoRepository>();
 
             services.AddControllers();
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
