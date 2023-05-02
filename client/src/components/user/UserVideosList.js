@@ -21,7 +21,6 @@ export const UserVideosList = ({ videos }) => {
 
 	return (
 		<div className="flex justify-center">
-			<div>Video List</div>
 			<article className="grid grid-cols-3 gap-3">
 				{videos.length < 12
 					? videos.map((video) => (

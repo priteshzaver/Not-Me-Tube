@@ -16,7 +16,6 @@ export const VideoList = ({ videos }) => {
 
 	return (
 		<div className="flex justify-center">
-			<div>VideoList</div>
 			<article className="grid grid-cols-3 gap-3">
 				{currentVideos.map((video) => (
 					<VideoCard key={video.id.videoId} video={video} />
