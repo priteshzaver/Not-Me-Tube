@@ -8,8 +8,8 @@ import { Spinner } from "./helpers/Spinner";
 import { BrowserRouter as Router } from "react-router-dom";
 
 export const NotMeTube = () => {
-	const [isLoggedIn, setIsLoggedIn] = useState(null),
-		[role, setRole] = useState("");
+	const [isLoggedIn, setIsLoggedIn] = useState(null);
+	const [currentUser, setCurrentUser] = useState();
 
 	useEffect(() => {
 		onLoginStatusChange(setIsLoggedIn);
@@ -18,11 +18,9 @@ export const NotMeTube = () => {
 	useEffect(() => {
 		if (isLoggedIn) {
 			// firebase.auth().currentUser.uid grabs the firebaseUUID -- firebase has many helpers like this
-			getUserDetails(firebase.auth().currentUser.uid).then((userObject) => {
-				setRole(userObject.userType.name);
-			});
-		} else {
-			setRole("");
+			getUserDetails(firebase.auth().currentUser.uid).then((userObject) =>
+				setCurrentUser(userObject)
+			);
 		}
 	}, [isLoggedIn]);
 
@@ -32,8 +30,23 @@ export const NotMeTube = () => {
 
 	return (
 		<Router>
-			<Header isLoggedIn={isLoggedIn} role={role} />
-			<ApplicationViews isLoggedIn={isLoggedIn} role={role} />
+			<Header isLoggedIn={isLoggedIn} role={currentUser?.userType?.role} />
+			<ApplicationViews
+				isLoggedIn={isLoggedIn}
+				role={currentUser?.userType?.role}
+				currentUser={currentUser}
+			/>
 		</Router>
 	);
 };
+
+// useEffect(() => {
+// 	if (isLoggedIn) {
+// 		// firebase.auth().currentUser.uid grabs the firebaseUUID -- firebase has many helpers like this
+// 		getUserDetails(firebase.auth().currentUser.uid).then((userObject) => {
+// 			setRole(userObject.userType.name);
+// 		});
+// 	} else {
+// 		setRole("");
+// 	}
+// }, [isLoggedIn]);
