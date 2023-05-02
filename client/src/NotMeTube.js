@@ -6,6 +6,7 @@ import { getUserDetails, onLoginStatusChange } from "./modules/authManager";
 import { Header } from "./Header";
 import { Spinner } from "./helpers/Spinner";
 import { BrowserRouter as Router } from "react-router-dom";
+import { SideBar } from "./SideBar";
 
 export const NotMeTube = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -31,6 +32,7 @@ export const NotMeTube = () => {
 	return (
 		<Router>
 			<Header isLoggedIn={isLoggedIn} role={currentUser?.userType?.role} />
+			<SideBar isLoggedIn={isLoggedIn} />
 			<ApplicationViews
 				isLoggedIn={isLoggedIn}
 				role={currentUser?.userType?.role}

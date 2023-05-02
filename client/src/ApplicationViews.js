@@ -6,7 +6,7 @@ import { SearchBar } from "./components/search/SearchBar";
 
 export const ApplicationViews = ({ isLoggedIn, role, currentUser }) => {
 	return (
-		<main>
+		<main className="scrollbar-hide h-[calc(91vh-72px)]">
 			<Routes>
 				<Route path="/">
 					<Route
