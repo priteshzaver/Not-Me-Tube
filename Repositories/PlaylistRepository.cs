@@ -64,7 +64,7 @@ namespace NotMeTube.Repositories
                                         LEFT JOIN PlaylistVideo pv ON p.Id = pv.PlaylistId
                                         LEFT JOIN Video v ON pv.VideoId = v.Id
                                         LEFT JOIN UserProfile up ON v.UserProfileId = up.Id
-                                        WHERE PlaylistUserId = @id";
+                                        WHERE p.UserProfileId = @id";
                     DbUtils.AddParameter(cmd, "id", id);
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -163,7 +163,7 @@ namespace NotMeTube.Repositories
                 Id = playlistId,
                 Name = DbUtils.GetString(reader, "Name"),
                 Description = DbUtils.GetString(reader, "Description"),
-                UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                UserProfileId = DbUtils.GetInt(reader, "PlaylistUserProfileId"),
                 IsPublic = DbUtils.GetBool(reader, "IsPublic"),
                 Videos = new List<Video>()
             };
@@ -173,11 +173,11 @@ namespace NotMeTube.Repositories
             return new Video()
             {
                 Id = DbUtils.GetInt(reader, "VideoId"),
-                Title = DbUtils.GetString(reader, "Title"),
-                Description = DbUtils.GetString(reader, "Description"),
+                Title = DbUtils.GetString(reader, "VideoTitle"),
+                Description = DbUtils.GetString(reader, "VideoDescription"),
                 YouTubeVideoId = DbUtils.GetString(reader, "YouTubeVideoId"),
                 DateCreated = DbUtils.GetDateTime(reader, "DateCreated"),
-                UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                UserProfileId = DbUtils.GetInt(reader, "VideoUserProfileId"),
                 IsApproved = DbUtils.GetBool(reader, "IsAPproved"),
                 UserProfile = new UserProfile()
                 {

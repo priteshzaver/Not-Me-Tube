@@ -3,6 +3,7 @@ import { Login } from "./components/auth/Login";
 import { UserVideos } from "./components/user/UserVideos";
 import { Register } from "./components/auth/Register";
 import { SearchBar } from "./components/search/SearchBar";
+import { UserPlaylists } from "./components/userPlaylists/UserPlaylists";
 
 export const ApplicationViews = ({ isLoggedIn, role, currentUser }) => {
 	return (
@@ -22,6 +23,16 @@ export const ApplicationViews = ({ isLoggedIn, role, currentUser }) => {
 					<Route
 						path="searchbar"
 						element={isLoggedIn ? <SearchBar /> : <Navigate to="/login" />}
+					/>
+					<Route
+						path="userPlaylists/:id"
+						element={
+							isLoggedIn ? (
+								<UserPlaylists currentUser={currentUser} />
+							) : (
+								<Navigate to="/login" />
+							)
+						}
 					/>
 					<Route path="login" element={<Login />} />
 					<Route path="register" element={<Register />} />
