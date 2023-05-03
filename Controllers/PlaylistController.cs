@@ -40,7 +40,6 @@ namespace NotMeTube.Controllers
         {
             UserProfile user = GetCurrentUserProfile();
 
-            playlist.UserProfileId = user.Id;
             _playlistRepository.Add(playlist);
             return CreatedAtAction(nameof(GetPlaylistsWithVideosByUserId), new { user.Id }, playlist);
 
