@@ -3,10 +3,10 @@ import "firebase/auth";
 import { ApplicationViews } from "./ApplicationViews";
 import { useEffect, useState } from "react";
 import { getUserDetails, onLoginStatusChange } from "./modules/authManager";
-import { Header } from "./Header";
+import { Header } from "./components/nav/Header";
 import { Spinner } from "./helpers/Spinner";
 import { BrowserRouter as Router } from "react-router-dom";
-import { SideBar } from "./SideBar";
+import { SideBar } from "./components/nav/SideBar";
 
 export const NotMeTube = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -32,7 +32,7 @@ export const NotMeTube = () => {
 	return (
 		<Router>
 			<Header isLoggedIn={isLoggedIn} role={currentUser?.userType?.role} />
-			<SideBar isLoggedIn={isLoggedIn} />
+			<SideBar isLoggedIn={isLoggedIn} currentUser={currentUser} />
 			<ApplicationViews
 				isLoggedIn={isLoggedIn}
 				role={currentUser?.userType?.role}
@@ -51,4 +51,4 @@ export const NotMeTube = () => {
 // 	} else {
 // 		setRole("");
 // 	}
-// }, [isLoggedIn]);
+// }, [isLoggedIn]);  DO NOT DELETE UNTIL ROLE IS CONFIRMED TO BE WORKING

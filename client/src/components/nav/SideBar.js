@@ -1,6 +1,6 @@
-import { logout } from "./modules/authManager";
+import { logout } from "../../modules/authManager";
 
-export const SideBar = ({ isLoggedIn }) => {
+export const SideBar = ({ isLoggedIn, currentUser }) => {
 	return (
 		<>
 			{isLoggedIn && (
@@ -12,7 +12,9 @@ export const SideBar = ({ isLoggedIn }) => {
 							</a>
 						</div>
 						<div className="mb-[1px] flex h-10 cursor-pointer items-center rounded-lg px-3 text-sm hover:bg-gray-200">
-							<span className="mr-5 text-lg">My Playlists</span>
+							<a href={`userPlaylists/${currentUser?.id}`}>
+								<span className="mr-5 text-lg">My Playlists</span>
+							</a>
 						</div>
 						<div className="mb-[1px] flex h-10 cursor-pointer items-center rounded-lg px-3 text-sm hover:bg-gray-200">
 							<span className="mr-5 text-lg">Explore Playlists</span>
