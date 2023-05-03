@@ -1,4 +1,6 @@
-﻿namespace NotMeTube.Models
+﻿using System.Collections.Generic;
+
+namespace NotMeTube.Models
 {
     public class Playlist
     {
@@ -7,5 +9,7 @@
         public string Description { get; set; }
         public int UserProfileId { get; set; }
         public bool IsPublic { get; set; }
+        public List<PlaylistVideo> PlaylistVideos { get; set; }
+        public List<Video> Videos { get; set; }
     }
 }
