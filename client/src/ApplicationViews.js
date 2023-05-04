@@ -7,7 +7,7 @@ import { UserPlaylists } from "./components/userPlaylists/UserPlaylists";
 
 export const ApplicationViews = ({ isLoggedIn, role, currentUser }) => {
 	return (
-		<main className="scrollbar-hide h-[calc(91vh-72px)]">
+		<main className="absolute left-44 z-0 w-[calc(100vw-11rem)]">
 			<Routes>
 				<Route path="/">
 					<Route
