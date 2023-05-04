@@ -61,6 +61,58 @@ namespace NotMeTube.Repositories
             }
         }
 
+        public void SaveVideo(Video video)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO Video (Title, Description, YouTubeVideoId, DateCreated, UserProfileId, IsApproved)
+                                        OUTPUT INSERTED.ID
+                                        VALUES (@Title, @Description, @YouTubeVideoId, @DateCreated, @UserProfileId, @IsApproved)";
+                    DbUtils.AddParameter(cmd, "Title", video.Title);
+                    DbUtils.AddParameter(cmd, "Description", video.Description);
+                    DbUtils.AddParameter(cmd, "YouTubeVideoId", video.YouTubeVideoId);
+                    DbUtils.AddParameter(cmd, "DateCreated", video.DateCreated);
+                    DbUtils.AddParameter(cmd, "UserProfileId", video.UserProfileId);
+                    DbUtils.AddParameter(cmd, "IsApproved", video.IsApproved);
+
+                    video.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+        public void SaveVideoToPlaylist(PlaylistVideo playlistVideo)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO PlaylistVideo (PlaylistId, VideoId)
+                                        OUTPUT INSERTED.ID
+                                        VALUES (@playlistId, @videoId)";
+                    DbUtils.AddParameter(cmd, "@playlistId", playlistVideo.PlaylistId);
+                    DbUtils.AddParameter(cmd, "@videoId", playlistVideo.VideoId);
+
+                    playlistVideo.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+        public void DeleteVideo(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM Video WHERE Id = @id";
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         private Video NewVideoFromReader(SqlDataReader reader)
         {
             return new Video()

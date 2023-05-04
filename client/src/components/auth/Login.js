@@ -16,7 +16,7 @@ export const Login = () => {
 	};
 
 	return (
-		<div className="flex h-screen bg-gray-100">
+		<div className="flex h-full bg-gray-100">
 			<div className="border-primary Border m-auto w-full max-w-md rounded-lg border bg-white px-16 py-10 shadow-2xl">
 				<h1 className="mb-4 mt-4 text-center text-6xl font-medium">Login</h1>
 				<div className="mb-3 grid">

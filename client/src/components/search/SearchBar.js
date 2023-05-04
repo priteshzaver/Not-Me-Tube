@@ -29,9 +29,13 @@ export const SearchBar = () => {
 					</fieldset>
 				</form>
 			</div>
-			<div>
-				<VideoList videos={videos} />
-			</div>
+			{videos ? (
+				<div>
+					<VideoList videos={videos} />
+				</div>
+			) : (
+				""
+			)}
 		</>
 	);
 };

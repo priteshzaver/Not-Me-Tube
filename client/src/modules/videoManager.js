@@ -28,3 +28,42 @@ export const getAllVideosByUserId = (userId) => {
 		}).then((res) => res.json());
 	});
 };
+
+export const saveVideo = (video) => {
+	return getToken().then((token) => {
+		return fetch(`${videoDatabaseUrl}`, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(video),
+		}).then((resp) => resp.json());
+	});
+};
+
+export const saveVideoToPlaylist = (video, playlistVideo) => {
+	return getToken().then((token) => {
+		return fetch(`${videoDatabaseUrl}`, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(video),
+		})
+			.then((resp) => resp.json())
+			.then((savedVideo) => {
+				playlistVideo.videoId = savedVideo.id;
+				return fetch(`${videoDatabaseUrl}/saveToPlaylist`, {
+					method: "POST",
+					headers: {
+						Authorization: `Bearer ${token}`,
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(playlistVideo),
+				});
+			})
+			.then((resp) => resp.json());
+	});
+};
