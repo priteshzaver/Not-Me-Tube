@@ -34,14 +34,10 @@ export const NotMeTube = () => {
 		<Router>
 			<UserContext.Provider value={{ currentUser }}>
 				<div className="relative flex h-screen flex-col">
-					<Header isLoggedIn={isLoggedIn} role={currentUser?.userType?.role} />
+					<Header isLoggedIn={isLoggedIn} />
 					<div className="absolute top-14 flex h-[calc(100vh-13.5rem)] flex-row">
-						<SideBar isLoggedIn={isLoggedIn} currentUser={currentUser} />
-						<ApplicationViews
-							isLoggedIn={isLoggedIn}
-							role={currentUser?.userType?.role}
-							currentUser={currentUser}
-						/>
+						<SideBar isLoggedIn={isLoggedIn} />
+						<ApplicationViews isLoggedIn={isLoggedIn} />
 					</div>
 				</div>
 			</UserContext.Provider>

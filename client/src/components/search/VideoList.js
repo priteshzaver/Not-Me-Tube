@@ -18,7 +18,13 @@ export const VideoList = ({ videos }) => {
 		<div className="flex justify-center">
 			<article className="grid grid-cols-3 gap-3">
 				{currentVideos.map((video) => (
-					<VideoCard key={video.id.videoId} video={video} />
+					<>
+						{video.id.videoId ? (
+							<VideoCard key={video.id.videoId} video={video} />
+						) : (
+							<VideoCard key={video.id} video={video} />
+						)}
+					</>
 				))}
 				<div>
 					{videos.length > 12 ? (

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { search } from "../../modules/videoManager";
 import { VideoList } from "./VideoList";
+import { search } from "../../modules/youTubeAPIManager";
 
 export const SearchBar = () => {
 	const [criterion, setCriterion] = useState("");

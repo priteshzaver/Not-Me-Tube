@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { logout } from "../../modules/authManager";
+import UserContext from "../../UserContext";
 
-export const SideBar = ({ isLoggedIn, currentUser }) => {
+export const SideBar = ({ isLoggedIn }) => {
+	const { currentUser } = useContext(UserContext);
 	return (
 		<>
 			{isLoggedIn && (
@@ -24,7 +27,9 @@ export const SideBar = ({ isLoggedIn, currentUser }) => {
 						<span className="mr-5 text-lg">Explore Playlists</span>
 					</div>
 					<div className="mb-[1px] flex h-10 cursor-pointer items-center rounded-lg px-3 text-sm hover:bg-gray-200">
-						<span className="mr-5 text-lg">Explore Videos</span>
+						<a href="/popularYoutubeVideos">
+							<span className="mr-5 text-lg">Most Popular Videos</span>
+						</a>
 					</div>
 					<div className="mb-[1px] flex h-10 cursor-pointer items-center rounded-lg px-3 text-sm hover:bg-gray-200">
 						<button onClick={logout}>
