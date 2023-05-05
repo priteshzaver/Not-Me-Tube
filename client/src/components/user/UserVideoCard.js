@@ -68,7 +68,9 @@ export const UserVideoCard = ({ video, playlist }) => {
 			/>
 			<div className="px-6 py-4">
 				<div className="mb-2 text-xl font-bold">{video.title}</div>
-				<div className="text-md mb-2">{video.description}</div>
+				<div className="text-md mb-2 overflow-hidden truncate">
+					{video.description}
+				</div>
 			</div>
 
 			{location.pathname === `/userPlaylists/${currentUser?.id}` ? (

@@ -4,21 +4,16 @@ import { UserVideos } from "./components/user/UserVideos";
 import { Register } from "./components/auth/Register";
 import { SearchBar } from "./components/search/SearchBar";
 import { UserPlaylists } from "./components/userPlaylists/UserPlaylists";
+import { YouTubePopularVideos } from "./components/explorePopularVideos/YouTubePopularVideos";
 
-export const ApplicationViews = ({ isLoggedIn, role, currentUser }) => {
+export const ApplicationViews = ({ isLoggedIn }) => {
 	return (
 		<main className="absolute left-44 z-0 w-[calc(100vw-11rem)]">
 			<Routes>
 				<Route path="/">
 					<Route
 						index
-						element={
-							isLoggedIn ? (
-								<UserVideos currentUser={currentUser} />
-							) : (
-								<Navigate to="/login" />
-							)
-						}
+						element={isLoggedIn ? <UserVideos /> : <Navigate to="/login" />}
 					/>
 					<Route
 						path="searchbar"
@@ -26,12 +21,12 @@ export const ApplicationViews = ({ isLoggedIn, role, currentUser }) => {
 					/>
 					<Route
 						path="userPlaylists/:id"
+						element={isLoggedIn ? <UserPlaylists /> : <Navigate to="/login" />}
+					/>
+					<Route
+						path="popularYoutubeVideos"
 						element={
-							isLoggedIn ? (
-								<UserPlaylists currentUser={currentUser} />
-							) : (
-								<Navigate to="/login" />
-							)
+							isLoggedIn ? <YouTubePopularVideos /> : <Navigate to="/login" />
 						}
 					/>
 					<Route path="login" element={<Login />} />
