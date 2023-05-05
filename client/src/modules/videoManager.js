@@ -67,3 +67,27 @@ export const saveVideoToPlaylist = (video, playlistVideo) => {
 			.then((resp) => resp.json());
 	});
 };
+
+export const deleteVideoFromPlaylist = (playlistVideo) => {
+	return getToken().then((token) => {
+		return fetch(`${videoDatabaseUrl}/deleteVideoFromPlaylist`, {
+			method: "DELETE",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(playlistVideo),
+		});
+	});
+};
+
+export const deleteVideoFromAccount = (id) => {
+	return getToken().then((token) => {
+		return fetch(`${videoDatabaseUrl}/${id}`, {
+			method: "DELETE",
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+	});
+};

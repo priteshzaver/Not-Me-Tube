@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using NotMeTube.Models;
@@ -108,6 +109,22 @@ namespace NotMeTube.Repositories
                 {
                     cmd.CommandText = "DELETE FROM Video WHERE Id = @id";
                     DbUtils.AddParameter(cmd, "@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void DeleteVideoFromPlaylist(PlaylistVideo playlistVideo)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM PlaylistVideo
+                                        WHERE PlaylistVideo.PlaylistId = @playlistId
+                                        AND PlaylistVideo.VideoId = @videoId";
+                    DbUtils.AddParameter(cmd, "@playlistId", playlistVideo.PlaylistId);
+                    DbUtils.AddParameter(cmd, "@videoId", playlistVideo.VideoId);
                     cmd.ExecuteNonQuery();
                 }
             }

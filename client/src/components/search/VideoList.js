@@ -36,25 +36,3 @@ export const VideoList = ({ videos }) => {
 		</div>
 	);
 };
-
-// {currentVideos.map((video) => (
-//   <VideoCard key={video.id.videoId} video={video} />
-// ))}
-// <div>
-//   {videos.length > 12 ? (
-//     <Pagination
-//       videosPerPage={videosPerPage}
-//       totalVideos={videos.length}
-//       paginate={paginate}
-//       currentPage={currentPage}
-//     />
-//   ) : (
-//     ""
-//   )}
-// </div>
-
-// const currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo);
-// 	const currentUserVideos = userVideos.slice(
-// 		indexOfFirstVideo,
-// 		indexOfLastVideo
-// 	);
