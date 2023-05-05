@@ -42,7 +42,22 @@ export const saveVideo = (video) => {
 	});
 };
 
-export const saveVideoToPlaylist = (video, playlistVideo) => {
+export const saveVideoToPlaylist = (playlistVideo) => {
+	return getToken()
+		.then((token) => {
+			return fetch(`${videoDatabaseUrl}/saveToPlaylist`, {
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(playlistVideo),
+			});
+		})
+		.then((resp) => resp.json());
+};
+
+export const saveVideoToAccountAndPlaylist = (video, playlistVideo) => {
 	return getToken().then((token) => {
 		return fetch(`${videoDatabaseUrl}`, {
 			method: "POST",
