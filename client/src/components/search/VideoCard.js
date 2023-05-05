@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { SaveToPlaylistModal } from "./SaveToPlaylistModal";
-import { saveVideo, saveVideoToPlaylist } from "../../modules/videoManager";
+import {
+	saveVideo,
+	saveVideoToAccountAndPlaylist,
+} from "../../modules/videoManager";
 
 export const VideoCard = ({ video }) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +38,7 @@ export const VideoCard = ({ video }) => {
 			videoId: 0,
 		};
 
-		saveVideoToPlaylist(sendVideoToApi, sendPlaylistVideoToApi)
+		saveVideoToAccountAndPlaylist(sendVideoToApi, sendPlaylistVideoToApi)
 			.then(() => {
 				setIsOpen(false);
 			})

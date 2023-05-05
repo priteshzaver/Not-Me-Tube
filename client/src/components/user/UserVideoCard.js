@@ -1,15 +1,21 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLocation } from "react-router";
 import UserContext from "../../UserContext";
 import {
 	deleteVideoFromAccount,
 	deleteVideoFromPlaylist,
+	saveVideoToPlaylist,
 } from "../../modules/videoManager";
+import { SaveToPlaylistModal } from "../search/SaveToPlaylistModal";
 
 export const UserVideoCard = ({ video, playlist }) => {
 	const location = useLocation();
 	const { currentUser } = useContext(UserContext);
-
+	const [isOpen, setIsOpen] = useState(false);
+	const [savePlaylistVideo, setSavePlaylistVideo] = useState({
+		playlistId: 0,
+		videoId: video.id,
+	});
 	const handleDeleteFromPlaylist = () => {
 		if (
 			window.confirm(
@@ -39,6 +45,17 @@ export const UserVideoCard = ({ video, playlist }) => {
 			});
 		}
 	};
+	const handleSaveToPlaylist = (event) => {
+		event.preventDefault();
+
+		saveVideoToPlaylist(savePlaylistVideo)
+			.then(() => {
+				setIsOpen(false);
+			})
+			.then(() => {
+				alert("This video was successfully saved to your playlist!");
+			});
+	};
 
 	return (
 		<section className="max-w-sm overflow-hidden rounded shadow-2xl">
@@ -53,7 +70,7 @@ export const UserVideoCard = ({ video, playlist }) => {
 				<div className="mb-2 text-xl font-bold">{video.title}</div>
 				<div className="text-md mb-2">{video.description}</div>
 			</div>
-			<button className="btn-primary">Add to Playlist</button>
+
 			{location.pathname === `/userPlaylists/${currentUser?.id}` ? (
 				<button
 					className="btn-primary"
@@ -67,14 +84,32 @@ export const UserVideoCard = ({ video, playlist }) => {
 				""
 			)}
 			{location.pathname === "/" ? (
-				<button
-					className="btn-primary"
-					onClick={() => {
-						handleDeleteFromAccount();
-					}}
-				>
-					Delete From Account
-				</button>
+				<>
+					<button
+						className="btn-primary"
+						onClick={(event) => {
+							event.preventDefault();
+							setIsOpen(true);
+						}}
+					>
+						Add to Playlist
+					</button>
+					<SaveToPlaylistModal
+						isOpen={isOpen}
+						setIsOpen={setIsOpen}
+						handleSaveToPlaylist={handleSaveToPlaylist}
+						savePlaylistVideo={savePlaylistVideo}
+						setSavePlaylistVideo={setSavePlaylistVideo}
+					/>
+					<button
+						className="btn-primary"
+						onClick={() => {
+							handleDeleteFromAccount();
+						}}
+					>
+						Delete From Account
+					</button>
+				</>
 			) : (
 				""
 			)}
