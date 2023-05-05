@@ -60,10 +60,16 @@ namespace NotMeTube.Controllers
                 return BadRequest();
             }
         }
-        [HttpDelete("{videoId}")]
+        [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute]int id)
         {
             _videoRepository.DeleteVideo(id);
+            return NoContent();
+        }
+        [HttpDelete("deleteVideoFromPlaylist")]
+        public IActionResult DeleteVideoFromPlaylist(PlaylistVideo playlistVideo)
+        {
+            _videoRepository.DeleteVideoFromPlaylist(playlistVideo);
             return NoContent();
         }
         private UserProfile GetCurrentUserProfile()

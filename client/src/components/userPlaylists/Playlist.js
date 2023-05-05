@@ -7,7 +7,7 @@ export const Playlist = ({ playlist }) => {
 			<div>{playlist.description}</div>
 			<div className="grid grid-cols-1">
 				{playlist.videos.map((video) => (
-					<UserVideoCard key={video.id} video={video} />
+					<UserVideoCard key={video.id} video={video} playlist={playlist} />
 				))}
 			</div>
 		</section>

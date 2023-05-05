@@ -5,15 +5,13 @@ import { UserVideoCard } from "./UserVideoCard";
 export const UserVideosList = ({ videos }) => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [videosPerPage] = useState(12);
-	const [currentVideos, setCurrentVideos] = useState([]);
+	let currentVideos = [];
 	const indexOfLastVideo = currentPage * videosPerPage;
 	const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
 
-	useEffect(() => {
-		if (videos > 12) {
-			setCurrentVideos(videos.slice(indexOfFirstVideo, indexOfLastVideo));
-		}
-	}, []);
+	if (videos.length > 12) {
+		currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo);
+	}
 
 	const paginate = (pageNumber) => {
 		setCurrentPage(pageNumber);
@@ -29,7 +27,6 @@ export const UserVideosList = ({ videos }) => {
 					: currentVideos.map((video) => (
 							<UserVideoCard key={video.id} video={video} />
 					  ))}
-
 				<div>
 					{videos.length > 12 ? (
 						<Pagination
@@ -46,8 +43,3 @@ export const UserVideosList = ({ videos }) => {
 		</div>
 	);
 };
-
-// const currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo);
-// {currentVideos.map((video) => (
-//     <UserVideoCard key={video.id} video={video} />
-// ))}

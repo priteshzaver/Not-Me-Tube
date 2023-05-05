@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NotMeTube.Models
 {
@@ -12,5 +13,6 @@ namespace NotMeTube.Models
         public int UserProfileId { get; set; }
         public bool IsApproved { get; set; }
         public UserProfile UserProfile { get; set; }
+        public List<PlaylistVideo> PlaylistVideos { get; set; }
     }
 }
