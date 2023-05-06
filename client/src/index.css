@@ -18,6 +18,12 @@ code {
 
 @layer components {
   .btn-primary {
-    @apply bg-blue-500 text-white ring-lime-600 ring-2 rounded-lg ring-offset-2 w-24
+    @apply ml-2 rounded-md bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:bg-blue-600 focus:outline-none
+  }
+  .btn-cancel {
+    @apply ml-2 rounded-md bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-600 focus:bg-gray-600 focus:outline-none;
+  }
+  .btn-delete {
+    @apply ml-2 rounded-md bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-600 focus:bg-red-600 focus:outline-none;
   }
 }

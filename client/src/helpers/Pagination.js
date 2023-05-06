@@ -11,17 +11,18 @@ export const Pagination = ({
 	}
 
 	return (
-		<nav>
-			<ul className="m-2 flex justify-center">
+		<nav className="flex justify-start">
+			<ul className="flex">
 				{pageNumbers.map((number) => (
 					<li key={number} className="page-item">
 						<button
 							onClick={() => paginate(number)}
-							className={
-								number === currentPage
-									? "m-2 cursor-pointer rounded-md border border-gray-400 bg-blue-600 px-10 py-5 font-mono text-white"
-									: "m-2 cursor-pointer rounded-md border border-gray-400 bg-white px-10 py-5 font-mono transition-colors hover:bg-blue-600 hover:text-white"
-							}
+							className={`m-2 rounded-md px-3 py-2 font-medium text-gray-700
+				  ${
+						number === currentPage
+							? "bg-blue-600 text-white"
+							: "bg-white hover:bg-blue-600 hover:text-white"
+					}`}
 						>
 							{number}
 						</button>

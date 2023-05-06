@@ -2,14 +2,14 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { Login } from "./components/auth/Login";
 import { UserVideos } from "./components/user/UserVideos";
 import { Register } from "./components/auth/Register";
-import { SearchBar } from "./components/search/SearchBar";
 import { UserPlaylists } from "./components/userPlaylists/UserPlaylists";
 import { YouTubePopularVideos } from "./components/explorePopularVideos/YouTubePopularVideos";
 import { ExplorePlaylists } from "./components/userPlaylists/ExplorePlaylists";
+import { VideoList } from "./components/search/VideoList";
 
-export const ApplicationViews = ({ isLoggedIn }) => {
+export const ApplicationViews = ({ isLoggedIn, videos }) => {
 	return (
-		<main className="absolute left-44 z-0 grid w-[calc(100vw-11rem)] justify-items-center">
+		<main className="absolute left-56 z-0 grid w-[calc(100vw-16rem)] justify-items-center">
 			<Routes>
 				<Route path="/">
 					<Route
@@ -17,8 +17,14 @@ export const ApplicationViews = ({ isLoggedIn }) => {
 						element={isLoggedIn ? <UserVideos /> : <Navigate to="/login" />}
 					/>
 					<Route
-						path="searchbar"
-						element={isLoggedIn ? <SearchBar /> : <Navigate to="/login" />}
+						path="searchResults"
+						element={
+							isLoggedIn ? (
+								<VideoList videos={videos} />
+							) : (
+								<Navigate to="/login" />
+							)
+						}
 					/>
 					<Route
 						path="userPlaylists/:id"

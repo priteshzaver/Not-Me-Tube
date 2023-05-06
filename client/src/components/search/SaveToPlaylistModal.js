@@ -50,7 +50,7 @@ export const SaveToPlaylistModal = ({
 								Save
 							</button>
 							<button
-								className="btn-primary float-right"
+								className="btn-cancel float-right"
 								onClick={() => setIsOpen(false)}
 							>
 								Cancel
