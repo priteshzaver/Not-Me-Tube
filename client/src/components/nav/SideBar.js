@@ -14,7 +14,7 @@ export const SideBar = ({ isLoggedIn }) => {
 						</a>
 					</div>
 					<div className="mb-[1px] flex h-10 cursor-pointer items-center rounded-lg px-3 text-sm hover:bg-gray-200">
-						<a href={`userPlaylists/${currentUser?.id}`}>
+						<a href={`/userPlaylists/${currentUser?.id}`}>
 							<span className="mr-5 text-lg">My Playlists</span>
 						</a>
 					</div>

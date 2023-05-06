@@ -34,6 +34,32 @@ namespace NotMeTube.Repositories
                 }
             }
         }
+        public List<Video> GetVideosByPlaylistId(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT v.Id AS VideoId, v.Title, v.Description, v.YouTubeVideoId, v.DateCreated AS VideoDateCreated, v.UserProfileId As VideoUserProfileId, v.IsApproved,
+                                        p.Id AS PlaylistId, p.Name, p.Description, p.UserProfileId AS PlaylistUserProfileId, p.IsPublic
+                                        From Video v
+                                        LEFT JOIN PlaylistVideo pv ON v.Id = pv.VideoId
+                                        LEFT JOIN Playlist p ON pv.PlaylistId = p.Id
+                                        WHERE p.Id = @Id";
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        var videos = new List<Video>();
+                        while (reader.Read())
+                        {
+                            videos.Add(NewVideoAndPlaylistFromReader(reader));
+                        }
+                        return videos;
+                    }
+                }
+            }
+        }
 
         public List<Video> GetVideosByUserId(int Id)
         {
@@ -148,6 +174,27 @@ namespace NotMeTube.Repositories
                     Email = DbUtils.GetString(reader, "Email"),
                     CreateDateTime = DbUtils.GetDateTime(reader, "UserProfileDateCreated"),
                     ImageLocation = DbUtils.GetString(reader, "UserProfileImageUrl"),
+                }
+            };
+        }
+        private Video NewVideoAndPlaylistFromReader(SqlDataReader reader)
+        {
+            return new Video()
+            {
+                Id = DbUtils.GetInt(reader, "VideoId"),
+                Title = DbUtils.GetString(reader, "Title"),
+                Description = DbUtils.GetString(reader, "Description"),
+                YouTubeVideoId = DbUtils.GetString(reader, "YouTubeVideoId"),
+                DateCreated = DbUtils.GetDateTime(reader, "VideoDateCreated"),
+                UserProfileId = DbUtils.GetInt(reader, "VideoUserProfileId"),
+                IsApproved = DbUtils.GetBool(reader, "IsApproved"),
+                Playlist = new Playlist()
+                {
+                    Id = DbUtils.GetInt(reader, "PlaylistId"),
+                    Name = DbUtils.GetString(reader, "Name"),
+                    Description = DbUtils.GetString(reader, "Description"),
+                    UserProfileId = DbUtils.GetInt(reader, "PlaylistUserProfileId"),
+                    IsPublic = DbUtils.GetBool(reader, "IsPublic"),
                 }
             };
         }
