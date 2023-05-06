@@ -29,10 +29,6 @@ namespace NotMeTube.Controllers
         public IActionResult GetPlaylistsWithVideosByUserId(int id)
         {
             List<Playlist> userPlaylists = _playlistRepository.GetPlaylistsWithVideosByUserId(id);
-            if(userPlaylists.Count == 0)
-            {
-                return NoContent();
-            }
             return Ok(userPlaylists);
         }
         [HttpPost]

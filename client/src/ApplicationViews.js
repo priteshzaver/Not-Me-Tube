@@ -5,6 +5,7 @@ import { Register } from "./components/auth/Register";
 import { SearchBar } from "./components/search/SearchBar";
 import { UserPlaylists } from "./components/userPlaylists/UserPlaylists";
 import { YouTubePopularVideos } from "./components/explorePopularVideos/YouTubePopularVideos";
+import { ExplorePlaylists } from "./components/userPlaylists/ExplorePlaylists";
 
 export const ApplicationViews = ({ isLoggedIn }) => {
 	return (
@@ -29,9 +30,15 @@ export const ApplicationViews = ({ isLoggedIn }) => {
 							isLoggedIn ? <YouTubePopularVideos /> : <Navigate to="/login" />
 						}
 					/>
+					<Route
+						path="explorePlaylists"
+						element={
+							isLoggedIn ? <ExplorePlaylists /> : <Navigate to="/login" />
+						}
+					/>
 					<Route path="login" element={<Login />} />
 					<Route path="register" element={<Register />} />
-					<Route path="*" element={<p>Whoops, nothing here...</p>} />
+					<Route path="*" element={<Navigate to="/" />} />
 				</Route>
 			</Routes>
 		</main>

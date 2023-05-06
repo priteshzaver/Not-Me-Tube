@@ -115,6 +115,28 @@ export const UserVideoCard = ({ video, playlist }) => {
 			) : (
 				""
 			)}
+			{location.pathname === "/explorePlaylists" ? (
+				<>
+					<button
+						className="btn-primary"
+						onClick={(event) => {
+							event.preventDefault();
+							setIsOpen(true);
+						}}
+					>
+						Add to Playlist
+					</button>
+					<SaveToPlaylistModal
+						isOpen={isOpen}
+						setIsOpen={setIsOpen}
+						handleSaveToPlaylist={handleSaveToPlaylist}
+						savePlaylistVideo={savePlaylistVideo}
+						setSavePlaylistVideo={setSavePlaylistVideo}
+					/>
+				</>
+			) : (
+				""
+			)}
 		</section>
 	);
 };
