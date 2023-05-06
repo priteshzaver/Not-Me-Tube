@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Pagination } from "../../helpers/Pagination";
 import { UserVideoCard } from "./UserVideoCard";
 
@@ -19,7 +19,7 @@ export const UserVideosList = ({ videos }) => {
 
 	return (
 		<div className="flex justify-center">
-			<article className="grid grid-cols-3 gap-3">
+			<article className="grid grid-cols-4">
 				{videos.length <= 12
 					? videos.map((video) => (
 							<UserVideoCard key={video.id} video={video} />

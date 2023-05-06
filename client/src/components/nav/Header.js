@@ -1,13 +1,20 @@
-export const Header = ({ isLoggedIn }) => {
+import { SearchBar } from "../search/SearchBar";
+import { MdOndemandVideo } from "react-icons/md";
+
+export const Header = ({ isLoggedIn, setVideos }) => {
 	return (
-		<header className="fixed top-0 z-10 h-14 w-screen shrink-0 border-2 border-black bg-white">
+		<header className="fixed top-0 z-10 h-16 w-screen shrink-0 bg-white">
 			<nav className="flex items-center justify-between px-4 py-3">
 				{isLoggedIn && (
 					<>
-						<div className="flex text-3xl lg:flex-1">
+						<div className="flex text-3xl font-bold lg:flex-1">
+							<MdOndemandVideo className="mr-2 mt-1" />
 							<a href="/">
 								<span>Not Me Tube</span>
 							</a>
+						</div>
+						<div className="hidden lg:block lg:w-2/3">
+							<SearchBar setVideos={setVideos} />
 						</div>
 					</>
 				)}

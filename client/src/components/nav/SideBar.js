@@ -1,43 +1,71 @@
 import { useContext } from "react";
 import { logout } from "../../modules/authManager";
 import UserContext from "../../UserContext";
+import { AiFillPlaySquare, AiFillStar } from "react-icons/ai";
+import { FaListUl } from "react-icons/fa";
+import { RiMovie2Line } from "react-icons/ri";
+import { FiLogOut } from "react-icons/fi";
+import { useLocation } from "react-router-dom";
 
 export const SideBar = ({ isLoggedIn }) => {
 	const { currentUser } = useContext(UserContext);
+	const location = useLocation();
+
+	const isActive = (path) => {
+		return location.pathname === path ? "bg-gray-200" : "";
+	};
+
 	return (
 		<>
 			{isLoggedIn && (
-				<aside className="fixed w-44 border-2 border-black bg-white">
-					<div className="mb-[1px] flex h-10 cursor-pointer items-center rounded-lg px-3 text-sm  hover:bg-gray-200">
+				<aside className="fixed w-56 bg-white">
+					<div
+						className={`flex h-16 items-center px-4 text-gray-600 ${isActive(
+							"/"
+						)}`}
+					>
+						<AiFillPlaySquare className="mr-2" />
 						<a href="/">
-							<span className="mr-5 text-lg">My Videos</span>
+							<span className="text-xl">My Videos</span>
 						</a>
 					</div>
-					<div className="mb-[1px] flex h-10 cursor-pointer items-center rounded-lg px-3 text-sm hover:bg-gray-200">
+					<div
+						className={`flex h-16 items-center px-4 text-gray-600 ${isActive(
+							`/userPlaylists/${currentUser?.id}`
+						)}`}
+					>
+						<FaListUl className="mr-2" />
 						<a href={`/userPlaylists/${currentUser?.id}`}>
-							<span className="mr-5 text-lg">My Playlists</span>
+							<span className="text-xl">My Playlists</span>
 						</a>
 					</div>
-					<div className="mb-[1px] flex h-10 cursor-pointer items-center rounded-lg px-3 text-sm hover:bg-gray-200">
-						<a href="/searchBar">
-							<span className="mr-5 text-lg">Searchbar</span>
-						</a>
-					</div>
-					<div className="mb-[1px] flex h-10 cursor-pointer items-center rounded-lg px-3 text-sm hover:bg-gray-200">
+					<div
+						className={`flex h-16 items-center px-4 text-gray-600 ${isActive(
+							"/explorePlaylists"
+						)}`}
+					>
+						<RiMovie2Line className="mr-2" />
 						<a href="/explorePlaylists">
-							<span className="mr-5 text-lg">Explore Playlists</span>
+							<span className="text-xl">Explore Playlists</span>
 						</a>
 					</div>
-					<div className="mb-[1px] flex h-10 cursor-pointer items-center rounded-lg px-3 text-sm hover:bg-gray-200">
+					<div
+						className={`flex h-16 items-center px-4 text-gray-600 ${isActive(
+							"/popularYoutubeVideos"
+						)}`}
+					>
+						<AiFillStar className="mr-2" />
 						<a href="/popularYoutubeVideos">
-							<span className="mr-5 text-lg">Most Popular Videos</span>
+							<span className="text-xl">Popular Videos</span>
 						</a>
 					</div>
-					<div className="mb-[1px] flex h-10 cursor-pointer items-center rounded-lg px-3 text-sm hover:bg-gray-200">
-						<button onClick={logout}>
-							<span className="mr-5 text-lg">Logout</span>
-						</button>
-					</div>
+					<button
+						onClick={logout}
+						className="flex h-16 items-center px-4 text-gray-600"
+					>
+						<FiLogOut className="mr-2" />
+						<span className="text-xl">Logout</span>
+					</button>
 				</aside>
 			)}
 		</>

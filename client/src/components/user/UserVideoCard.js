@@ -58,8 +58,8 @@ export const UserVideoCard = ({ video, playlist }) => {
 	};
 
 	return (
-		<div className="px-6 py-4">
-			<section className="max-w-sm overflow-hidden rounded bg-white">
+		<div className="h-96 w-96 px-3 py-4">
+			<section className="h-full max-w-sm overflow-hidden rounded bg-white">
 				<div className="flex justify-center">
 					<iframe
 						className="video rounded-md"
@@ -69,16 +69,18 @@ export const UserVideoCard = ({ video, playlist }) => {
 						allowFullScreen
 					/>
 				</div>
-				<div className="px-6 py-4">
-					<div className="mb-2 text-xl font-bold">{video.title}</div>
-					<div className="text-md mb-2 overflow-hidden truncate">
+				<div className="h-2/5 px-6 py-4">
+					<div className="mb-2 overflow-hidden text-xl font-bold">
+						{video.title}
+					</div>
+					<div className="text-md overflow-hidden truncate">
 						{video.description}
 					</div>
 				</div>
 
 				{location.pathname === `/userPlaylists/${currentUser?.id}` ? (
 					<button
-						className="btn-primary"
+						className="btn-delete"
 						onClick={() => {
 							handleDeleteFromPlaylist();
 						}}
@@ -107,7 +109,7 @@ export const UserVideoCard = ({ video, playlist }) => {
 							setSavePlaylistVideo={setSavePlaylistVideo}
 						/>
 						<button
-							className="btn-primary"
+							className="btn-delete"
 							onClick={() => {
 								handleDeleteFromAccount();
 							}}
