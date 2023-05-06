@@ -15,7 +15,10 @@ export const CreatePlaylistModal = ({ isOpen, setIsOpen }) => {
 
 	const createPlaylistButton = (event) => {
 		event.preventDefault();
-		return createPlaylist(newPlaylist).then(() => setIsOpen(false));
+		return createPlaylist(newPlaylist).then(() => {
+			alert("This playlist was successfully created!");
+			window.location.reload();
+		});
 	};
 
 	return (

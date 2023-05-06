@@ -31,10 +31,6 @@ namespace NotMeTube.Controllers
         public IActionResult GetVideosByUserId(int id)
         {
             List<Video> userVideos = _videoRepository.GetVideosByUserId(id);
-            if(userVideos.Count == 0)
-            {
-                return NoContent();
-            }
             return Ok(userVideos);
         }
         [HttpPost]

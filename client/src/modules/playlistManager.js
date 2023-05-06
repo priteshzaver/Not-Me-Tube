@@ -2,6 +2,17 @@ import { getToken } from "./authManager";
 
 const playlistApiUrl = "/api/playlist";
 
+export const getAllPlaylists = () => {
+	return getToken().then((token) => {
+		return fetch(`${playlistApiUrl}`, {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		}).then((res) => res.json());
+	});
+};
+
 export const getAllPlaylistsByUserId = (userId) => {
 	return getToken().then((token) => {
 		return fetch(`${playlistApiUrl}/${userId}/playlists`, {
