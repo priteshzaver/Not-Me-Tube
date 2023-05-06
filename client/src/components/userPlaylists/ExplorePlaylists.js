@@ -19,9 +19,9 @@ export const ExplorePlaylists = () => {
 	}, [allPlaylists]);
 
 	return (
-		<article className="grid grid-cols-3">
+		<article className="grid grid-cols-3 gap-x-0 sm:gap-x-20">
 			{filteredPlaylists.map((playlist) => (
-				<Playlist key={playlist.id} playlist={playlist} />
+				<Playlist key={playlist?.id} playlist={playlist} />
 			))}
 		</article>
 	);

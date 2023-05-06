@@ -68,6 +68,12 @@ namespace NotMeTube.Controllers
             _videoRepository.DeleteVideoFromPlaylist(playlistVideo);
             return NoContent();
         }
+        [HttpGet("playlist/{id}/videos")]
+        public IActionResult GetVideosByPlaylistId(int id)
+        {
+            return Ok(_videoRepository.GetVideosByPlaylistId(id));
+        }
+
         private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;

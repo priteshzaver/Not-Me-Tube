@@ -90,3 +90,14 @@ export const deleteVideoFromAccount = (id) => {
 		});
 	});
 };
+
+export const getVideosByPlaylistId = (playlistId) => {
+	return getToken().then((token) => {
+		return fetch(`${videoDatabaseUrl}/playlist/${playlistId}/videos`, {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		}).then((res) => res.json());
+	});
+};

@@ -14,5 +14,6 @@ namespace NotMeTube.Models
         public bool IsApproved { get; set; }
         public UserProfile UserProfile { get; set; }
         public List<PlaylistVideo> PlaylistVideos { get; set; }
+        public Playlist Playlist { get; set; }
     }
 }

@@ -40,10 +40,6 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "Google.Apis.YouTube.v3": {
-              "target": "Package",
-              "version": "[1.60.0.2945, )"
-            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[5.0.17, )"

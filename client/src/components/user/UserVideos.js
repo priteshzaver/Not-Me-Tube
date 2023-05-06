@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { getAllVideosByUserId } from "../../modules/videoManager";
-
 import "firebase/auth";
 import { UserVideosList } from "./UserVideosList";
 import UserContext from "../../UserContext";

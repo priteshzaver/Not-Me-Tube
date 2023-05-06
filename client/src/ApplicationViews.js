@@ -9,7 +9,7 @@ import { ExplorePlaylists } from "./components/userPlaylists/ExplorePlaylists";
 
 export const ApplicationViews = ({ isLoggedIn }) => {
 	return (
-		<main className="absolute left-44 z-0 w-[calc(100vw-11rem)]">
+		<main className="absolute left-44 z-0 grid w-[calc(100vw-11rem)] justify-items-center">
 			<Routes>
 				<Route path="/">
 					<Route
@@ -38,7 +38,7 @@ export const ApplicationViews = ({ isLoggedIn }) => {
 					/>
 					<Route path="login" element={<Login />} />
 					<Route path="register" element={<Register />} />
-					<Route path="*" element={<Navigate to="/" />} />
+					<Route path="*" element={<p>Whoops, nothing here...</p>} />
 				</Route>
 			</Routes>
 		</main>

@@ -17,7 +17,7 @@ export const UserPlaylists = () => {
 		<>
 			<button onClick={() => setIsOpen(true)}>Create a new playlist</button>
 			<CreatePlaylistModal isOpen={isOpen} setIsOpen={setIsOpen} />
-			<article className="grid grid-cols-3">
+			<article className="grid grid-cols-3 gap-x-0 sm:gap-x-20">
 				{userPlaylists.map((playlist) => (
 					<Playlist key={playlist.id} playlist={playlist} />
 				))}

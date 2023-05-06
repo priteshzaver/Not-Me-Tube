@@ -91,7 +91,7 @@ namespace NotMeTube.Repositories
                 }
             }
         }
-
+        
         public void Add(Playlist playlist)
         {
             using (var conn = Connection)
