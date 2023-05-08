@@ -25,6 +25,7 @@ namespace NotMeTube
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<IVideoRepository, VideoRepository>();
             services.AddTransient<IPlaylistRepository, PlaylistRepository>();
+            services.AddTransient<ICommentRepository, CommentRepository>();
 
             services.AddControllers();
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");

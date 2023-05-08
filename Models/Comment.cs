@@ -9,5 +9,6 @@ namespace NotMeTube.Models
         public int VideoId { get; set; }
         public int UserProfileId { get; set; }
         public DateTime CreateDateTime { get; set; }
+        public UserProfile UserProfile { get; set; }
     }
 }
