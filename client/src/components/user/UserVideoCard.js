@@ -1,11 +1,7 @@
 import { useContext, useState } from "react";
 import { useLocation } from "react-router";
 import UserContext from "../../UserContext";
-import {
-	deleteVideoFromAccount,
-	deleteVideoFromPlaylist,
-	saveVideoToPlaylist,
-} from "../../modules/videoManager";
+import { deleteVideoFromAccount, deleteVideoFromPlaylist, saveVideoToPlaylist } from "../../modules/videoManager";
 import { SaveToPlaylistModal } from "../search/SaveToPlaylistModal";
 
 export const UserVideoCard = ({ video, playlist }) => {
@@ -17,11 +13,7 @@ export const UserVideoCard = ({ video, playlist }) => {
 		videoId: video.id,
 	});
 	const handleDeleteFromPlaylist = () => {
-		if (
-			window.confirm(
-				"Are you sure you want to delete this video from the playlist?"
-			)
-		) {
+		if (window.confirm("Are you sure you want to delete this video from the playlist?")) {
 			const sendDeleteToApi = {
 				playlistId: playlist.id,
 				videoId: video.id,
@@ -32,13 +24,8 @@ export const UserVideoCard = ({ video, playlist }) => {
 			});
 		}
 	};
-
 	const handleDeleteFromAccount = () => {
-		if (
-			window.confirm(
-				"Are you sure you want to delete this video from your account? It will also delete the video from any associated playlists."
-			)
-		) {
+		if (window.confirm("Are you sure you want to delete this video from your account? It will also delete the video from any associated playlists.")) {
 			deleteVideoFromAccount(video.id).then(() => {
 				alert("This video was successfully deleted from your account!");
 				window.location.reload();
@@ -56,11 +43,10 @@ export const UserVideoCard = ({ video, playlist }) => {
 				alert("This video was successfully saved to your playlist!");
 			});
 	};
-
 	return (
-		<div className="h-96 w-96 px-3 py-4">
-			<section className="h-full max-w-sm overflow-hidden rounded bg-white">
-				<div className="flex justify-center">
+		<>
+			<section className="mb-2 h-96 w-96 max-w-sm overflow-hidden rounded border-2 border-green-300 bg-white px-2 py-2">
+				<div className="mt-1 flex justify-center">
 					<iframe
 						className="video rounded-md"
 						src={`https://www.youtube.com/embed/${video.youTubeVideoId}`}
@@ -70,14 +56,9 @@ export const UserVideoCard = ({ video, playlist }) => {
 					/>
 				</div>
 				<div className="h-2/5 px-6 py-4">
-					<div className="mb-2 overflow-hidden text-xl font-bold">
-						{video.title}
-					</div>
-					<div className="text-md overflow-hidden truncate">
-						{video.description}
-					</div>
+					<div className="mb-2 overflow-hidden text-xl font-bold">{video.title}</div>
+					<div className="text-md overflow-hidden truncate">{video.description}</div>
 				</div>
-
 				{location.pathname === `/userPlaylists/${currentUser?.id}` ? (
 					<button
 						className="btn-delete"
@@ -143,6 +124,6 @@ export const UserVideoCard = ({ video, playlist }) => {
 					""
 				)}
 			</section>
-		</div>
+		</>
 	);
 };

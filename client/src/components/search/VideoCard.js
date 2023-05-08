@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { SaveToPlaylistModal } from "./SaveToPlaylistModal";
-import {
-	saveVideo,
-	saveVideoToAccountAndPlaylist,
-} from "../../modules/videoManager";
+import { saveVideo, saveVideoToAccountAndPlaylist } from "../../modules/videoManager";
 
 export const VideoCard = ({ video }) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -13,9 +10,7 @@ export const VideoCard = ({ video }) => {
 	});
 	let videoYouTubeId = "";
 	{
-		video.id.videoId
-			? (videoYouTubeId = video.id.videoId)
-			: (videoYouTubeId = video.id);
+		video.id.videoId ? (videoYouTubeId = video.id.videoId) : (videoYouTubeId = video.id);
 	}
 
 	const handleSaveVideo = (event) => {
@@ -77,14 +72,9 @@ export const VideoCard = ({ video }) => {
 					)}
 					<div className="px-6 py-4">
 						<div className="mb-2 text-xl font-bold">{video.snippet.title}</div>
-						<div className="text-md mb-2 overflow-hidden truncate">
-							{video.snippet.description}
-						</div>
+						<div className="text-md mb-2 overflow-hidden truncate">{video.snippet.description}</div>
 					</div>
-					<button
-						className="btn-primary"
-						onClick={(event) => handleSaveVideo(event)}
-					>
+					<button className="btn-primary" onClick={(event) => handleSaveVideo(event)}>
 						Save Video
 					</button>
 					<button

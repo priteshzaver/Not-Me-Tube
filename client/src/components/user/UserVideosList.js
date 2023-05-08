@@ -18,28 +18,15 @@ export const UserVideosList = ({ videos }) => {
 	};
 
 	return (
-		<div className="flex justify-center">
-			<article className="grid grid-cols-4">
-				{videos.length <= 12
-					? videos.map((video) => (
-							<UserVideoCard key={video.id} video={video} />
-					  ))
-					: currentVideos.map((video) => (
-							<UserVideoCard key={video.id} video={video} />
-					  ))}
-				<div>
-					{videos.length > 12 ? (
-						<Pagination
-							videosPerPage={videosPerPage}
-							totalVideos={videos.length}
-							paginate={paginate}
-							currentPage={currentPage}
-						/>
-					) : (
-						""
-					)}
-				</div>
-			</article>
-		</div>
+		<>
+			<div className="float-left self-center">
+				{videos.length > 12 ? <Pagination videosPerPage={videosPerPage} totalVideos={videos.length} paginate={paginate} currentPage={currentPage} /> : ""}
+			</div>
+			<div className="flex justify-center w-full">
+				<article className="grid grid-cols-4 w-full">
+					{videos.length <= 12 ? videos.map((video) => <UserVideoCard key={video.id} video={video} />) : currentVideos.map((video) => <UserVideoCard key={video.id} video={video} />)}
+				</article>
+			</div>
+		</>
 	);
 };

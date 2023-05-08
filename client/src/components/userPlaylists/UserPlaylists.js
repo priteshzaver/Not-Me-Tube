@@ -15,7 +15,9 @@ export const UserPlaylists = () => {
 
 	return (
 		<>
-			<button onClick={() => setIsOpen(true)}>Create a new playlist</button>
+			<button className="btn-primary h-min" onClick={() => setIsOpen(true)}>
+				Create a new playlist
+			</button>
 			<CreatePlaylistModal isOpen={isOpen} setIsOpen={setIsOpen} />
 			<article className="grid grid-cols-3 gap-x-0 sm:gap-x-20">
 				{userPlaylists.map((playlist) => (

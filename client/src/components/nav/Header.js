@@ -3,7 +3,7 @@ import { MdOndemandVideo } from "react-icons/md";
 
 export const Header = ({ isLoggedIn, setVideos }) => {
 	return (
-		<header className="fixed top-0 z-10 h-16 w-screen shrink-0 bg-white">
+		<header className="fixed top-0 z-10 h-16 w-screen shrink-0 border-b-2 border-emerald-300 bg-gradient-to-tr from-emerald-100 to-teal-200">
 			<nav className="flex items-center justify-between px-4 py-3">
 				{isLoggedIn && (
 					<>

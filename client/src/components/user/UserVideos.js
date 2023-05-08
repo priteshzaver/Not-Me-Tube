@@ -12,7 +12,7 @@ export const UserVideos = () => {
 	}, [currentUser]);
 
 	return (
-		<div>
+		<div className="flex w-full">
 			<UserVideosList videos={videos} />
 		</div>
 	);

@@ -32,59 +32,31 @@ export const Register = () => {
 		<form onSubmit={registerClick}>
 			<fieldset>
 				<label htmlFor="firstName">First Name</label>
-				<input
-					id="firstName"
-					type="text"
-					onChange={(e) => setFirstName(e.target.value)}
-				/>
+				<input id="firstName" type="text" onChange={(e) => setFirstName(e.target.value)} />
 			</fieldset>
 			<fieldset>
 				<label htmlFor="lastName">Last Name</label>
-				<input
-					id="lastName"
-					type="text"
-					onChange={(e) => setLastName(e.target.value)}
-				/>
+				<input id="lastName" type="text" onChange={(e) => setLastName(e.target.value)} />
 			</fieldset>
 			<fieldset>
 				<label htmlFor="displayName">Display Name</label>
-				<input
-					id="displayName"
-					type="text"
-					onChange={(e) => setDisplayName(e.target.value)}
-				/>
+				<input id="displayName" type="text" onChange={(e) => setDisplayName(e.target.value)} />
 			</fieldset>
 			<fieldset>
 				<label for="email">Email</label>
-				<input
-					id="email"
-					type="text"
-					onChange={(e) => setEmail(e.target.value)}
-				/>
+				<input id="email" type="text" onChange={(e) => setEmail(e.target.value)} />
 			</fieldset>
 			<fieldset>
 				<label htmlFor="imageLocation">Profile Image URL</label>
-				<input
-					id="imageLocation"
-					type="text"
-					onChange={(e) => setImageLocation(e.target.value)}
-				/>
+				<input id="imageLocation" type="text" onChange={(e) => setImageLocation(e.target.value)} />
 			</fieldset>
 			<fieldset>
 				<label for="password">Password</label>
-				<input
-					id="password"
-					type="password"
-					onChange={(e) => setPassword(e.target.value)}
-				/>
+				<input id="password" type="password" onChange={(e) => setPassword(e.target.value)} />
 			</fieldset>
 			<fieldset>
 				<label for="confirmPassword">Confirm Password</label>
-				<input
-					id="confirmPassword"
-					type="password"
-					onChange={(e) => setConfirmPassword(e.target.value)}
-				/>
+				<input id="confirmPassword" type="password" onChange={(e) => setConfirmPassword(e.target.value)} />
 			</fieldset>
 			<fieldset>
 				<button>Register</button>

@@ -22,11 +22,7 @@ export const CreatePlaylistModal = ({ isOpen, setIsOpen }) => {
 	};
 
 	return (
-		<Dialog
-			open={isOpen}
-			onClose={() => setIsOpen(false)}
-			className="relative z-50"
-		>
+		<Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
 			<div className="fixed inset-0 bg-black/70" aria-hidden="true" />
 			<div className="fixed inset-0 flex items-center justify-center p-4">
 				<div className="bg-white p-8">
@@ -74,16 +70,10 @@ export const CreatePlaylistModal = ({ isOpen, setIsOpen }) => {
 									}}
 								/>
 							</fieldset>
-							<button
-								className="btn-primary"
-								onClick={(event) => createPlaylistButton(event)}
-							>
+							<button className="btn-primary" onClick={(event) => createPlaylistButton(event)}>
 								Create
 							</button>
-							<button
-								className="btn-primary float-right"
-								onClick={() => setIsOpen(false)}
-							>
+							<button className="btn-primary float-right" onClick={() => setIsOpen(false)}>
 								Cancel
 							</button>
 						</form>

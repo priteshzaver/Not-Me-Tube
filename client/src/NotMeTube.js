@@ -20,10 +20,7 @@ export const NotMeTube = () => {
 
 	useEffect(() => {
 		if (isLoggedIn) {
-			// firebase.auth().currentUser.uid grabs the firebaseUUID -- firebase has many helpers like this
-			getUserDetails(firebase.auth().currentUser.uid).then((userObject) =>
-				setCurrentUser(userObject)
-			);
+			getUserDetails(firebase.auth().currentUser.uid).then((userObject) => setCurrentUser(userObject));
 		}
 	}, [isLoggedIn]);
 
@@ -38,21 +35,10 @@ export const NotMeTube = () => {
 					<Header isLoggedIn={isLoggedIn} setVideos={setVideos} />
 					<div className="absolute top-16 flex h-[calc(100vh-13.5rem)] flex-row">
 						<SideBar isLoggedIn={isLoggedIn} />
-						<ApplicationViews isLoggedIn={isLoggedIn} videos={videos} />
+						<ApplicationViews isLoggedIn={isLoggedIn} videos={videos}/>
 					</div>
 				</div>
 			</UserContext.Provider>
 		</Router>
 	);
 };
-
-// useEffect(() => {
-// 	if (isLoggedIn) {
-// 		// firebase.auth().currentUser.uid grabs the firebaseUUID -- firebase has many helpers like this
-// 		getUserDetails(firebase.auth().currentUser.uid).then((userObject) => {
-// 			setRole(userObject.userType.name);
-// 		});
-// 	} else {
-// 		setRole("");
-// 	}
-// }, [isLoggedIn]);  DO NOT DELETE UNTIL ROLE IS CONFIRMED TO BE WORKING

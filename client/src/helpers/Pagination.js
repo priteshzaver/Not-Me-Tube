@@ -1,9 +1,4 @@
-export const Pagination = ({
-	videosPerPage,
-	totalVideos,
-	paginate,
-	currentPage,
-}) => {
+export const Pagination = ({ videosPerPage, totalVideos, paginate, currentPage }) => {
 	const pageNumbers = [];
 
 	for (let i = 1; i <= Math.ceil(totalVideos / videosPerPage); i++) {
@@ -11,24 +6,34 @@ export const Pagination = ({
 	}
 
 	return (
-		<nav className="flex justify-start">
-			<ul className="flex">
+		<nav className="flex flex-col items-center justify-start">
+			<div className="flex items-center justify-center">
+				{currentPage < pageNumbers.length && (
+					<button onClick={() => paginate(currentPage + 1)} className="m-2 h-10 w-10 rounded-md border-2 border-green-300 bg-emerald-100 px-3 py-1 font-bold text-black hover:bg-emerald-200">
+						&#8594;
+					</button>
+				)}
+			</div>
+			<ul className="flex flex-col">
 				{pageNumbers.map((number) => (
 					<li key={number} className="page-item">
 						<button
 							onClick={() => paginate(number)}
-							className={`m-2 rounded-md px-3 py-2 font-medium text-gray-700
-				  ${
-						number === currentPage
-							? "bg-blue-600 text-white"
-							: "bg-white hover:bg-blue-600 hover:text-white"
-					}`}
+							className={`m-2 h-10 w-10 rounded-md border-2 border-green-300 px-3 py-2 font-medium text-black
+				${number === currentPage ? "bg-cyan-200" : "bg-emerald-100 hover:bg-emerald-200"}`}
 						>
 							{number}
 						</button>
 					</li>
 				))}
 			</ul>
+			<div className="flex items-center justify-center">
+				{currentPage > 1 && (
+					<button onClick={() => paginate(currentPage - 1)} className="m-2 h-10 w-10 rounded-md border-2 border-green-300 bg-emerald-100 px-3 py-1 font-bold text-black hover:bg-emerald-200">
+						&#8592;
+					</button>
+				)}
+			</div>
 		</nav>
 	);
 };
