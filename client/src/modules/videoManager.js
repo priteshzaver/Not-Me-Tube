@@ -13,6 +13,17 @@ export const getAllVideosByUserId = (userId) => {
 	});
 };
 
+export const getVideoDetailsById = (id) => {
+	return getToken().then((token) => {
+		return fetch(`${videoDatabaseUrl}/${id}`, {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		}).then((res) => res.json());
+	});
+}
+
 export const saveVideo = (video) => {
 	return getToken().then((token) => {
 		return fetch(`${videoDatabaseUrl}`, {
