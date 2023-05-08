@@ -33,6 +33,16 @@ namespace NotMeTube.Controllers
             List<Video> userVideos = _videoRepository.GetVideosByUserId(id);
             return Ok(userVideos);
         }
+        [HttpGet("{id}")]
+        public IActionResult GetVideoById(int id)
+        {
+            var video = _videoRepository.GetVideoById(id);
+            if (video == null)
+            {
+                return NotFound();
+            }
+            return Ok(video);
+        }
         [HttpPost]
         public IActionResult SaveVideo(Video video)
         {

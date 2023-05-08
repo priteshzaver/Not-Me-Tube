@@ -87,6 +87,32 @@ namespace NotMeTube.Repositories
                 }
             }
         }
+        public Video GetVideoById(int Id )
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT v.Id AS VideoId, v.Title, v.Description, v.YouTubeVideoId, v.DateCreated AS VideoDateCreated, v.UserProfileId As VideoUserProfileId, v.IsApproved,
+                                        up.DisplayName, up.Email, up.CreateDateTime AS UserProfileDateCreated, up.ImageLocation AS UserProfileImageUrl
+                                        FROM Video v
+                                        JOIN UserProfile up ON v.UserProfileId = up.Id
+                                        WHERE v.Id = @Id";
+                    DbUtils.AddParameter(cmd, "@Id", Id);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        Video video = null;
+
+                        if (reader.Read())
+                        {
+                            video = NewVideoFromReader(reader);
+                        }
+                        return video;
+                    }
+                }
+            }
+        }
 
         public void SaveVideo(Video video)
         {
