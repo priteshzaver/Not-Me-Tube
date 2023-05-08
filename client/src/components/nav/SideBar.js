@@ -12,15 +12,15 @@ export const SideBar = ({ isLoggedIn }) => {
 	const location = useLocation();
 
 	const isActive = (path) => {
-		return location.pathname === path ? "bg-gray-200" : "";
+		return location.pathname === path ? "bg-emerald-200" : "";
 	};
 
 	return (
 		<>
 			{isLoggedIn && (
-				<aside className="fixed w-56 bg-white">
+				<aside className="fixed h-full w-56 border-r-2 border-green-300 bg-white bg-gradient-to-b from-emerald-100 to-cyan-200">
 					<div
-						className={`flex h-16 items-center px-4 text-gray-600 ${isActive(
+						className={`duration-800 flex h-16 items-center border-b-2 border-green-300 from-cyan-200 to-cyan-300 px-4 text-black opacity-100 transition hover:bg-gradient-to-l ${isActive(
 							"/"
 						)}`}
 					>
@@ -30,7 +30,7 @@ export const SideBar = ({ isLoggedIn }) => {
 						</a>
 					</div>
 					<div
-						className={`flex h-16 items-center px-4 text-gray-600 ${isActive(
+						className={`duration-800 flex h-16 items-center border-b-2 border-green-300 from-cyan-200 to-cyan-300 px-4 text-black opacity-100 transition hover:bg-gradient-to-l  ${isActive(
 							`/userPlaylists/${currentUser?.id}`
 						)}`}
 					>
@@ -40,7 +40,7 @@ export const SideBar = ({ isLoggedIn }) => {
 						</a>
 					</div>
 					<div
-						className={`flex h-16 items-center px-4 text-gray-600 ${isActive(
+						className={`duration-800 flex h-16 items-center border-b-2 border-green-300 from-cyan-200 to-cyan-300 px-4 text-black opacity-100 transition hover:bg-gradient-to-l  ${isActive(
 							"/explorePlaylists"
 						)}`}
 					>
@@ -50,7 +50,7 @@ export const SideBar = ({ isLoggedIn }) => {
 						</a>
 					</div>
 					<div
-						className={`flex h-16 items-center px-4 text-gray-600 ${isActive(
+						className={`duration-800 flex h-16 items-center border-b-2 border-green-300 from-cyan-200 to-cyan-300 px-4 text-black opacity-100 transition hover:bg-gradient-to-l  ${isActive(
 							"/popularYoutubeVideos"
 						)}`}
 					>
@@ -59,13 +59,12 @@ export const SideBar = ({ isLoggedIn }) => {
 							<span className="text-xl">Popular Videos</span>
 						</a>
 					</div>
-					<button
-						onClick={logout}
-						className="flex h-16 items-center px-4 text-gray-600"
-					>
-						<FiLogOut className="mr-2" />
-						<span className="text-xl">Logout</span>
-					</button>
+					<div className=" duration-800 border-b-2  border-green-300 opacity-100 transition hover:bg-pink-200">
+						<button onClick={logout} className="flex h-16 items-center px-4 text-black">
+							<FiLogOut className="mr-2" />
+							<span className="text-xl">Logout</span>
+						</button>
+					</div>
 				</aside>
 			)}
 		</>

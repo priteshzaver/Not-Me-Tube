@@ -17,11 +17,7 @@ export const Playlist = ({ playlist }) => {
 						{playlist.name}
 					</button>
 				</div>
-				<ExpandedPlaylistDetailsModal
-					isOpen={isOpen}
-					setIsOpen={setIsOpen}
-					videos={playlist.videos}
-				/>
+				<ExpandedPlaylistDetailsModal isOpen={isOpen} setIsOpen={setIsOpen} videos={playlist.videos} />
 				<p className="text-base text-gray-700">{playlist.description}</p>
 				<div className="mt-4">
 					<p className="text-base text-gray-700">By {playlist.userProfileId}</p>

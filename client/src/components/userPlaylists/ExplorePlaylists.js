@@ -12,9 +12,7 @@ export const ExplorePlaylists = () => {
 		getAllPlaylists().then((data) => setAllPlaylists(data));
 	}, []);
 	useEffect(() => {
-		const otherPlaylists = allPlaylists.filter(
-			(playlist) => playlist.userProfileId !== currentUser.id
-		);
+		const otherPlaylists = allPlaylists.filter((playlist) => playlist.userProfileId !== currentUser.id);
 		setFilteredPlaylists(otherPlaylists);
 	}, [allPlaylists]);
 

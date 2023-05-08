@@ -17,10 +17,7 @@ export const SearchBar = ({ setVideos }) => {
 	return (
 		<>
 			<div className="flex w-full items-center justify-center lg:w-auto lg:justify-start">
-				<form
-					onSubmit={searchSubmit}
-					className="flex w-full items-center justify-center lg:w-1/2 lg:justify-start"
-				>
+				<form onSubmit={searchSubmit} className="flex w-full items-center justify-center lg:w-1/2 lg:justify-start">
 					<fieldset className="w-2/3">
 						<input
 							type="text"
