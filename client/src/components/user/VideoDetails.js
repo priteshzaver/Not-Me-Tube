@@ -40,7 +40,7 @@ export const VideoDetails = () => {
 					<CommentsView id={id} />
 				</section>
 			</div>
-			<section className="h-screen w-1/3 overflow-y-scroll grid grid-cols-1 justify-items-center">
+			<section className="h-screen w-1/3 overflow-y-scroll grid grid-cols-1 justify-items-center pt-2">
 				<RelatedVideos youTubeVideoId={video.youTubeVideoId} />
 			</section>
 		</article>

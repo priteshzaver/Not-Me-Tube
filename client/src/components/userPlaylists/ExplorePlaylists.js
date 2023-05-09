@@ -12,13 +12,15 @@ export const ExplorePlaylists = () => {
 		getAllPlaylists().then((data) => setAllPlaylists(data));
 	}, []);
 	useEffect(() => {
-		const otherPlaylists = allPlaylists.filter((playlist) => playlist.userProfileId !== currentUser.id);
-		setFilteredPlaylists(otherPlaylists);
+		if(currentUser) {
+			const otherPlaylists = allPlaylists.filter((playlist) => playlist.userProfileId !== currentUser.id);
+			setFilteredPlaylists(otherPlaylists);
+		}
 	}, [allPlaylists]);
 
 	return (
 		<div className="h-full w-full bg-gradient-to-br from-cyan-100 to-blue-300">
-			<article className="grid grid-cols-3 gap-y-4 h-[calc(170vh)]">
+			<article className="grid grid-cols-3 gap-y-4">
 				{filteredPlaylists.map((playlist) => (
 					<Playlist key={playlist?.id} playlist={playlist} />
 				))}

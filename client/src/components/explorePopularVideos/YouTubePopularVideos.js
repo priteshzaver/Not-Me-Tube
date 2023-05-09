@@ -12,7 +12,7 @@ export const YouTubePopularVideos = () => {
 	return (
 		<>
 			{videos ? (
-				<div>
+				<div className="flex w-full h-full bg-gradient-to-br from-cyan-100 to-blue-300">
 					<VideoList videos={videos} />
 				</div>
 			) : (

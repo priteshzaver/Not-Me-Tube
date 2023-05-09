@@ -21,7 +21,7 @@ export const mostPopularVideosOnYouTube = () => {
 };
 
 export const getRelatedVideos = (youTubeVideoId) => {
-	return fetch(`${youTubeApi}search?part=snippet&relatedToVideoId=${youTubeVideoId}&type=video&key=${apiKey}`, {
+	return fetch(`${youTubeApi}search?part=snippet&relatedToVideoId=${youTubeVideoId}&type=video&maxResults=50&key=${apiKey}`, {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",

@@ -5,7 +5,7 @@ import { ExpandedPlaylistDetailsModal } from "./ExpandedPlaylistModal";
 export const Playlist = ({ playlist }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
-		<section className="rounded-md shadow-lg w-4/5 justify-self-center bg-white overflow-auto">
+		<section className="rounded-md shadow-lg h-[70vh] w-4/5 justify-self-center bg-white overflow-y-scroll">
 			<div className="px-6 py-4">
 				<div className="mb-2 text-xl font-bold">
 					<button

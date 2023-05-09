@@ -15,11 +15,11 @@ export const RelatedVideos = ({ youTubeVideoId }) => {
 	}, [youTubeVideoId]);
 
 	return (
-		<div className="flex flex-col w-full h-full">
+		<>
 			{videos?.map((video) => (
 				<VideoCard key={video?.id?.videoId} video={video} />
 			))}
-		</div>
+		</>
 	);
 };
 
