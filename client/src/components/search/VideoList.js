@@ -5,23 +5,30 @@ import { Pagination } from "../../helpers/Pagination";
 export const VideoList = ({ videos }) => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [videosPerPage] = useState(12);
-
+	let currentVideos = [];
 	const indexOfLastVideo = currentPage * videosPerPage;
 	const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
-	const currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo);
+
+	if (videos.length > 12) {
+		currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo);
+	}
 
 	const paginate = (pageNumber) => {
 		setCurrentPage(pageNumber);
 	};
 
 	return (
-		<div className="flex justify-center">
-			<article className="grid grid-cols-3 gap-3">
-				{currentVideos.map((video) => (
-					<>{video.id.videoId ? <VideoCard key={video.id.videoId} video={video} /> : <VideoCard key={video.id} video={video} />}</>
-				))}
-				<div>{videos.length > 12 ? <Pagination videosPerPage={videosPerPage} totalVideos={videos.length} paginate={paginate} currentPage={currentPage} /> : ""}</div>
-			</article>
-		</div>
+		<>
+			<div className="float-left self-center">
+				{videos.length > 12 ? <Pagination videosPerPage={videosPerPage} totalVideos={videos.length} paginate={paginate} currentPage={currentPage} /> : ""}
+			</div>
+			<div className="flex justify-center w-full mt-2">
+				<article className="grid grid-cols-4 w-full">
+					{currentVideos.map((video) => (
+						<>{video.id.videoId ? <VideoCard key={video.id.videoId} video={video} /> : <VideoCard key={video.id} video={video} />}</>
+					))}
+				</article>
+			</div>
+		</>
 	);
 };

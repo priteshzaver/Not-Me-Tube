@@ -22,7 +22,7 @@ export const UserPlaylists = () => {
 				<CreatePlaylistModal isOpen={isOpen} setIsOpen={setIsOpen} />
 			</div>
 
-			<article className="grid grid-cols-3 gap-y-4 h-[calc(170vh)]">
+			<article className="grid grid-cols-3 gap-y-4">
 				{userPlaylists.map((playlist) => (
 					<Playlist key={playlist.id} playlist={playlist} />
 				))}

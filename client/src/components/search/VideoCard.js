@@ -50,27 +50,30 @@ export const VideoCard = ({ video }) => {
 	};
 
 	return (
-		<div className="px-6 py-4">
-			<section className="max-w-sm overflow-hidden rounded shadow-2xl">
+		<>
+			<section className="mb-2 h-96 w-96 max-w-sm overflow-hidden rounded-md border-2 border-green-300 bg-white px-2 py-2">
 				<form>
+					<div className="mt-1 flex justify-center">
+
 					{video.id.videoId ? (
 						<iframe
-							className="video"
-							src={`https://www.youtube.com/embed/${video.id.videoId}`}
-							title="YouTube video player"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-							allowFullScreen
+						className="video"
+						src={`https://www.youtube.com/embed/${video.id.videoId}`}
+						title="YouTube video player"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowFullScreen
 						/>
-					) : (
-						<iframe
+						) : (
+							<iframe
 							className="video"
 							src={`https://www.youtube.com/embed/${video.id}`}
 							title="YouTube video player"
 							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 							allowFullScreen
-						/>
-					)}
-					<div className="px-6 py-4">
+							/>
+							)}
+							</div>
+					<div className="h-2/5 px-6 py-4">
 						<div className="mb-2 text-xl font-bold">{video.snippet.title}</div>
 						<div className="text-md mb-2 overflow-hidden truncate">{video.snippet.description}</div>
 					</div>
@@ -95,6 +98,6 @@ export const VideoCard = ({ video }) => {
 					/>
 				</form>
 			</section>
-		</div>
+		</>
 	);
 };
