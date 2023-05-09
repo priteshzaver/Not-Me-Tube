@@ -21,7 +21,7 @@ export const SearchBar = ({ setVideos }) => {
 					<fieldset className="w-2/3">
 						<input
 							type="text"
-							placeholder="searchterms"
+							placeholder="Search Terms"
 							onChange={(event) => {
 								setCriterion(event.target.value);
 							}}

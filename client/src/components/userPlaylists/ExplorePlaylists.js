@@ -17,10 +17,12 @@ export const ExplorePlaylists = () => {
 	}, [allPlaylists]);
 
 	return (
-		<article className="grid grid-cols-3 gap-x-0 sm:gap-x-20">
-			{filteredPlaylists.map((playlist) => (
-				<Playlist key={playlist?.id} playlist={playlist} />
-			))}
-		</article>
+		<div className="h-full w-full bg-gradient-to-br from-cyan-100 to-blue-300">
+			<article className="grid grid-cols-3 gap-y-4 h-[calc(170vh)]">
+				{filteredPlaylists.map((playlist) => (
+					<Playlist key={playlist?.id} playlist={playlist} />
+				))}
+			</article>
+		</div>
 	);
 };

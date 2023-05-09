@@ -45,7 +45,7 @@ export const UserVideoCard = ({ video, playlist }) => {
 	};
 	return (
 		<>
-			<section className="mb-2 h-96 w-96 max-w-sm overflow-hidden rounded border-2 border-green-300 bg-white px-2 py-2">
+			<section className="mb-2 h-96 w-96 max-w-sm overflow-hidden rounded-md border-2 border-green-300 bg-white px-2 py-2">
 				<div className="mt-1 flex justify-center">
 					<iframe
 						className="video rounded-md"
