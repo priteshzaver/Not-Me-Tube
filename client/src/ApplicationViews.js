@@ -10,7 +10,7 @@ import { VideoDetails } from "./components/user/VideoDetails";
 
 export const ApplicationViews = ({ isLoggedIn, videos }) => {
 	return (
-		<main className="absolute left-56 z-0 grid w-[calc(100vw-15rem)] h-[calc(100vh-4rem)] justify-items-center pt-2 bg-gradient-to-br from-cyan-100 to-blue-300">
+		<main className="absolute left-56 z-0 grid w-[calc(100vw-15rem)] h-[calc(100vh-4rem)] justify-items-center">
 			<Routes>
 				<Route path="/">
 					<Route index element={isLoggedIn ? <UserVideos /> : <Navigate to="/login" />} />

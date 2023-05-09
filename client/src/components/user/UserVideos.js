@@ -12,7 +12,7 @@ export const UserVideos = () => {
 	}, [currentUser]);
 
 	return (
-		<div className="flex w-full">
+		<div className="flex w-full h-full bg-gradient-to-br from-cyan-100 to-blue-300">
 			<UserVideosList videos={videos} />
 		</div>
 	);

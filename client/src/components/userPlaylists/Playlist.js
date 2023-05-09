@@ -5,7 +5,7 @@ import { ExpandedPlaylistDetailsModal } from "./ExpandedPlaylistModal";
 export const Playlist = ({ playlist }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
-		<section className="max-w-sm overflow-hidden rounded shadow-lg">
+		<section className="rounded-md shadow-lg w-4/5 justify-self-center bg-white overflow-auto">
 			<div className="px-6 py-4">
 				<div className="mb-2 text-xl font-bold">
 					<button
@@ -23,12 +23,10 @@ export const Playlist = ({ playlist }) => {
 					<p className="text-base text-gray-700">By {playlist.userProfileId}</p>
 				</div>
 			</div>
-			<div className=" border-t border-gray-200">
-				<div className="max-h-96 divide-y divide-gray-200 overflow-y-auto bg-gray-100">
+			<div className="flex flex-col items-center">
 					{playlist.videos.map((video) => (
 						<UserVideoCard key={video.id} video={video} playlist={playlist} />
 					))}
-				</div>
 			</div>
 		</section>
 	);

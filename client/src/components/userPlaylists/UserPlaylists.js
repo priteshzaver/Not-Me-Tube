@@ -14,16 +14,19 @@ export const UserPlaylists = () => {
 	}, []);
 
 	return (
-		<>
-			<button className="btn-primary h-min" onClick={() => setIsOpen(true)}>
-				Create a new playlist
-			</button>
-			<CreatePlaylistModal isOpen={isOpen} setIsOpen={setIsOpen} />
-			<article className="grid grid-cols-3 gap-x-0 sm:gap-x-20">
+		<div className="h-full w-full bg-gradient-to-br from-cyan-100 to-blue-300">
+			<div className="mt-2">
+				<button className="btn-primary h-min" onClick={() => setIsOpen(true)}>
+					Create a new playlist
+				</button>
+				<CreatePlaylistModal isOpen={isOpen} setIsOpen={setIsOpen} />
+			</div>
+
+			<article className="grid grid-cols-3 gap-y-4 h-[calc(170vh)]">
 				{userPlaylists.map((playlist) => (
 					<Playlist key={playlist.id} playlist={playlist} />
 				))}
 			</article>
-		</>
+		</div>
 	);
 };

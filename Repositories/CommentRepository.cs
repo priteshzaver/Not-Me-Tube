@@ -16,11 +16,12 @@ namespace NotMeTube.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"c.Id, c.Message, c.VideoId, c.UserProfileId, C.CreateDateTime,
+                    cmd.CommandText = @"SELECT c.Id, c.Message, c.VideoId, c.UserProfileId, C.CreateDateTime,
                                         u.Id, u.DisplayName
                                         FROM Comment c
                                         LEFT JOIN UserProfile u ON c.UserProfileId = u.Id
-                                        WHERE c.VideoId = @Id";
+                                        WHERE c.VideoId = @Id
+                                        ORDER BY CreateDateTime DESC";
                     DbUtils.AddParameter(cmd, "@Id", Id);
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -42,7 +43,7 @@ namespace NotMeTube.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"INSERT INTO Comment (Message, VideoId, UserProfileId, CreateDateTime)
-                                        OUTPUT INSERT ID
+                                        OUTPUT INSERTED.ID
                                         VALUES (@Message, @VideoId, @UserProfileId, @CreateDateTime)";
                     DbUtils.AddParameter(cmd, "Message", comment.Message);
                     DbUtils.AddParameter(cmd, "VideoId", comment.VideoId);
@@ -61,7 +62,7 @@ namespace NotMeTube.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"UPDATE Comment
-                                        SET Message = @message,
+                                        SET Message = @message
                                             WHERE Id = @id";
                     DbUtils.AddParameter(cmd, "@message", comment.Message);
                     DbUtils.AddParameter(cmd, "id", comment.Id);

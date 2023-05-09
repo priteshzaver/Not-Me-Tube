@@ -22,7 +22,7 @@ export const UserVideosList = ({ videos }) => {
 			<div className="float-left self-center">
 				{videos.length > 12 ? <Pagination videosPerPage={videosPerPage} totalVideos={videos.length} paginate={paginate} currentPage={currentPage} /> : ""}
 			</div>
-			<div className="flex justify-center w-full">
+			<div className="flex justify-center w-full mt-2">
 				<article className="grid grid-cols-4 w-full">
 					{videos.length <= 12 ? videos.map((video) => <UserVideoCard key={video.id} video={video} />) : currentVideos.map((video) => <UserVideoCard key={video.id} video={video} />)}
 				</article>
