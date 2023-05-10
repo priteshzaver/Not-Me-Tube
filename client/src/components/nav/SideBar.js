@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { logout } from "../../modules/authManager";
 import UserContext from "../../UserContext";
 import { AiFillPlaySquare, AiFillStar } from "react-icons/ai";
-import { FaListUl } from "react-icons/fa";
+import { FaListUl, FaPencilAlt } from "react-icons/fa";
 import { RiMovie2Line } from "react-icons/ri";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
 
 export const SideBar = ({ isLoggedIn }) => {
@@ -17,7 +17,7 @@ export const SideBar = ({ isLoggedIn }) => {
 
 	return (
 		<>
-			{isLoggedIn && (
+			{isLoggedIn ? (
 				<aside className="fixed h-full w-56 border-r-2 border-green-300 bg-white bg-gradient-to-b from-emerald-100 to-cyan-200">
 					<div
 						className={`duration-800 flex h-16 items-center border-b-2 border-green-300 from-cyan-200 to-cyan-300 px-4 text-black opacity-100 transition hover:bg-gradient-to-l ${isActive(
@@ -64,6 +64,29 @@ export const SideBar = ({ isLoggedIn }) => {
 							<FiLogOut className="mr-2" />
 							<span className="text-xl">Logout</span>
 						</button>
+					</div>
+				</aside>
+			) : (
+				<aside className="fixed h-full w-56 border-r-2 border-green-300 bg-white bg-gradient-to-b from-emerald-100 to-cyan-200">
+					<div
+						className={`duration-800 flex h-16 items-center border-b-2 border-green-300 from-cyan-200 to-cyan-300 px-4 text-black opacity-100 transition hover:bg-gradient-to-l ${isActive(
+							"/login"
+						)}`}
+					>
+						<FiLogIn className="mr-2" />
+						<a href="/login">
+							<span className="text-xl">Login</span>
+						</a>
+					</div>
+					<div
+						className={`duration-800 flex h-16 items-center border-b-2 border-green-300 from-cyan-200 to-cyan-300 px-4 text-black opacity-100 transition hover:bg-gradient-to-l  ${isActive(
+							"/register"
+						)}`}
+					>
+						<FaPencilAlt className="mr-2" />
+						<a href="/register">
+							<span className="text-xl">Register</span>
+						</a>
 					</div>
 				</aside>
 			)}

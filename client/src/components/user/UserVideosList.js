@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Pagination } from "../../helpers/Pagination";
 import { UserVideoCard } from "./UserVideoCard";
 
-export const UserVideosList = ({ videos }) => {
+export const UserVideosList = ({ videos, userPlaylists }) => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [videosPerPage] = useState(12);
 	let currentVideos = [];
@@ -24,7 +24,7 @@ export const UserVideosList = ({ videos }) => {
 			</div>
 			<div className="flex justify-center w-full mt-2">
 				<article className="grid grid-cols-4 w-full">
-					{videos.length <= 12 ? videos.map((video) => <UserVideoCard key={video.id} video={video} />) : currentVideos.map((video) => <UserVideoCard key={video.id} video={video} />)}
+					{videos.length <= 12 ? videos.map((video) => <UserVideoCard key={video.id} video={video} userPlaylists={userPlaylists}/>) : currentVideos.map((video) => <UserVideoCard key={video.id} video={video} userPlaylists={userPlaylists}/>)}
 				</article>
 			</div>
 		</>

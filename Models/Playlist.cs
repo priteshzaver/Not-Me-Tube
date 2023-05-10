@@ -11,5 +11,6 @@ namespace NotMeTube.Models
         public bool IsPublic { get; set; }
         public List<PlaylistVideo> PlaylistVideos { get; set; }
         public List<Video> Videos { get; set; }
+        public UserProfile UserProfile { get; set; }
     }
 }

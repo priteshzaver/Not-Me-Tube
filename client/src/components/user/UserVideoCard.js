@@ -3,11 +3,13 @@ import { useLocation } from "react-router";
 import UserContext from "../../UserContext";
 import { deleteVideoFromAccount, deleteVideoFromPlaylist, saveVideoToPlaylist } from "../../modules/videoManager";
 import { SaveToPlaylistModal } from "../search/SaveToPlaylistModal";
+import { DeleteFromAccountModal } from "./DeleteFromAccountModal";
 
-export const UserVideoCard = ({ video, playlist }) => {
+export const UserVideoCard = ({ video, playlist, userPlaylists }) => {
 	const location = useLocation();
 	const { currentUser } = useContext(UserContext);
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpenPlaylist, setIsOpenPlaylist] = useState(false);
+	const [isOpenDeleteFromAccount, setIsOpenDeleteFromAccount] = useState(false);
 	const [savePlaylistVideo, setSavePlaylistVideo] = useState({
 		playlistId: 0,
 		videoId: video.id,
@@ -25,19 +27,18 @@ export const UserVideoCard = ({ video, playlist }) => {
 		}
 	};
 	const handleDeleteFromAccount = () => {
-		if (window.confirm("Are you sure you want to delete this video from your account? It will also delete the video from any associated playlists.")) {
-			deleteVideoFromAccount(video.id).then(() => {
-				alert("This video was successfully deleted from your account!");
-				window.location.reload();
-			});
-		}
+		deleteVideoFromAccount(video.id).then(() => {
+			alert("This video was successfully deleted from your account!");
+			window.location.reload();
+		});
 	};
+
 	const handleSaveToPlaylist = (event) => {
 		event.preventDefault();
 
 		saveVideoToPlaylist(savePlaylistVideo)
 			.then(() => {
-				setIsOpen(false);
+				setIsOpenPlaylist(false);
 			})
 			.then(() => {
 				alert("This video was successfully saved to your playlist!");
@@ -56,7 +57,9 @@ export const UserVideoCard = ({ video, playlist }) => {
 					/>
 				</div>
 				<div className="h-2/5 px-6 py-4">
-					<div className="mb-2 overflow-hidden text-xl font-bold"><a href={`/videoDetails/${video.id}`}>{video.title}</a></div>
+					<div className="mb-2 overflow-hidden text-xl font-bold">
+						<a href={`/videoDetails/${video.id}`}>{video.title}</a>
+					</div>
 					<div className="text-md overflow-hidden truncate">{video.description}</div>
 				</div>
 				{location.pathname === `/userPlaylists/${currentUser?.id}` ? (
@@ -77,26 +80,33 @@ export const UserVideoCard = ({ video, playlist }) => {
 							className="btn-primary"
 							onClick={(event) => {
 								event.preventDefault();
-								setIsOpen(true);
+								setIsOpenPlaylist(true);
 							}}
 						>
 							Add to Playlist
 						</button>
 						<SaveToPlaylistModal
-							isOpen={isOpen}
-							setIsOpen={setIsOpen}
+							isOpen={isOpenPlaylist}
+							setIsOpen={setIsOpenPlaylist}
 							handleSaveToPlaylist={handleSaveToPlaylist}
 							savePlaylistVideo={savePlaylistVideo}
 							setSavePlaylistVideo={setSavePlaylistVideo}
+							userPlaylists={userPlaylists}
 						/>
 						<button
 							className="btn-delete"
-							onClick={() => {
-								handleDeleteFromAccount();
+							onClick={(event) => {
+								event.preventDefault();
+								setIsOpenDeleteFromAccount(true);
 							}}
 						>
 							Delete From Account
 						</button>
+						<DeleteFromAccountModal
+							isOpenDeleteFromAccount={isOpenDeleteFromAccount}
+							setIsOpenDeleteFromAccount={setIsOpenDeleteFromAccount}
+							handleDeleteFromAccount={handleDeleteFromAccount}
+						/>
 					</>
 				) : (
 					""
@@ -107,17 +117,18 @@ export const UserVideoCard = ({ video, playlist }) => {
 							className="btn-primary"
 							onClick={(event) => {
 								event.preventDefault();
-								setIsOpen(true);
+								setIsOpenPlaylist(true);
 							}}
 						>
 							Add to Playlist
 						</button>
 						<SaveToPlaylistModal
-							isOpen={isOpen}
-							setIsOpen={setIsOpen}
+							isOpen={isOpenPlaylist}
+							setIsOpen={setIsOpenPlaylist}
 							handleSaveToPlaylist={handleSaveToPlaylist}
 							savePlaylistVideo={savePlaylistVideo}
 							setSavePlaylistVideo={setSavePlaylistVideo}
+							userPlaylists={userPlaylists}
 						/>
 					</>
 				) : (
