@@ -73,7 +73,7 @@ export const CommentsList = React.memo(({ videoComments, setVideosComments }) =>
 									Edit
 								</button>
 								<button
-									className="btn-primary m-1"
+									className="btn-delete m-1"
 									onClick={() => {
 										handleDelete(comment.id);
 										handleDeleteComment(comment.id);

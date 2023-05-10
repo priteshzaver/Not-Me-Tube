@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SaveToPlaylistModal } from "./SaveToPlaylistModal";
 import { saveVideo, saveVideoToAccountAndPlaylist } from "../../modules/videoManager";
 
-export const VideoCard = ({ video }) => {
+export const VideoCard = ({ video, userPlaylists }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [savePlaylistVideo, setSavePlaylistVideo] = useState({
 		playlistId: 0,
@@ -95,6 +95,7 @@ export const VideoCard = ({ video }) => {
 						handleSaveToPlaylist={handleSaveToPlaylist}
 						savePlaylistVideo={savePlaylistVideo}
 						setSavePlaylistVideo={setSavePlaylistVideo}
+						userPlaylists={userPlaylists}
 					/>
 				</form>
 			</section>

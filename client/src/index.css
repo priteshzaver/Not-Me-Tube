@@ -26,4 +26,17 @@ code {
   .btn-delete {
     @apply ml-2 rounded-md bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-600 focus:bg-red-600 focus:outline-none;
   }
+
+  ::-webkit-scrollbar {
+    width: 16px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: rgb(167, 243, 208);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(6, 182, 212);
+    border-radius: 50px;
+  }
 }

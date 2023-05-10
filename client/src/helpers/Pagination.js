@@ -1,3 +1,5 @@
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+
 export const Pagination = ({ videosPerPage, totalVideos, paginate, currentPage }) => {
 	const pageNumbers = [];
 
@@ -10,7 +12,7 @@ export const Pagination = ({ videosPerPage, totalVideos, paginate, currentPage }
 			<div className="flex items-center justify-center">
 				{currentPage < pageNumbers.length && (
 					<button onClick={() => paginate(currentPage + 1)} className="m-2 h-10 w-10 rounded-md border-2 border-green-300 bg-emerald-100 px-3 py-1 font-bold text-black hover:bg-emerald-200">
-						&#8594;
+						<FiArrowRight />
 					</button>
 				)}
 			</div>
@@ -30,7 +32,7 @@ export const Pagination = ({ videosPerPage, totalVideos, paginate, currentPage }
 			<div className="flex items-center justify-center">
 				{currentPage > 1 && (
 					<button onClick={() => paginate(currentPage - 1)} className="m-2 h-10 w-10 rounded-md border-2 border-green-300 bg-emerald-100 px-3 py-1 font-bold text-black hover:bg-emerald-200">
-						&#8592;
+						<FiArrowLeft />
 					</button>
 				)}
 			</div>
