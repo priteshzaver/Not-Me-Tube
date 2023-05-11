@@ -28,7 +28,7 @@ export const ExplorePlaylists = () => {
 
 	return (
 		<div className="h-full w-full bg-gradient-to-br from-cyan-100 to-blue-300">
-			<article className="grid grid-cols-3 gap-y-4">
+			<article className="p-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 				{filteredPlaylists.map((playlist) => (
 					<Playlist key={playlist?.id} playlist={playlist} userPlaylists={userPlaylists} />
 				))}
