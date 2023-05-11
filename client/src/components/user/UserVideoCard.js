@@ -46,94 +46,99 @@ export const UserVideoCard = ({ video, playlist, userPlaylists }) => {
 	};
 	return (
 		<>
-			<section className="mb-2 h-96 w-96 max-w-sm overflow-hidden rounded-md border-2 border-green-300 bg-white px-2 py-2">
-				<div className="mt-1 flex justify-center">
-					<iframe
-						className="video rounded-md"
-						src={`https://www.youtube.com/embed/${video.youTubeVideoId}`}
-						title="YouTube video player"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-						allowFullScreen
-					/>
-				</div>
-				<div className="h-2/5 px-6 py-4">
-					<div className="mb-2 overflow-hidden text-xl font-bold">
-						<a href={`/videoDetails/${video.id}`}>{video.title}</a>
-					</div>
-					<div className="text-md overflow-hidden truncate">{video.description}</div>
-				</div>
-				{location.pathname === `/userPlaylists/${currentUser?.id}` ? (
-					<button
-						className="btn-delete"
-						onClick={() => {
-							handleDeleteFromPlaylist();
-						}}
-					>
-						Delete from Playlist
-					</button>
-				) : (
-					""
-				)}
-				{location.pathname === "/" ? (
-					<>
-						<button
-							className="btn-primary"
-							onClick={(event) => {
-								event.preventDefault();
-								setIsOpenPlaylist(true);
-							}}
-						>
-							Add to Playlist
-						</button>
-						<SaveToPlaylistModal
-							isOpen={isOpenPlaylist}
-							setIsOpen={setIsOpenPlaylist}
-							handleSaveToPlaylist={handleSaveToPlaylist}
-							savePlaylistVideo={savePlaylistVideo}
-							setSavePlaylistVideo={setSavePlaylistVideo}
-							userPlaylists={userPlaylists}
+			<section className="mb-2 flex h-96 w-96 max-w-sm flex-col overflow-hidden rounded-md border-2 border-green-300 bg-white">
+				<div>
+					<div className="mt-1 flex justify-center">
+						<iframe
+							className="video rounded-md"
+							src={`https://www.youtube.com/embed/${video.youTubeVideoId}`}
+							title="YouTube video player"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+							allowFullScreen
 						/>
+					</div>
+					<div className="px-6 py-4">
+						<div className="mb-2 line-clamp-2 text-xl font-bold">
+							<a href={`/videoDetails/${video.id}`}>{video.title}</a>
+						</div>
+						<div className="text-md line-clamp-2">{video.description}</div>
+					</div>
+				</div>
+				<div className="flex-grow"></div>
+				<div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row sm:px-6">
+					{location.pathname === `/userPlaylists/${currentUser?.id}` ? (
 						<button
 							className="btn-delete"
-							onClick={(event) => {
-								event.preventDefault();
-								setIsOpenDeleteFromAccount(true);
+							onClick={() => {
+								handleDeleteFromPlaylist();
 							}}
 						>
-							Delete From Account
+							Delete from Playlist
 						</button>
-						<DeleteFromAccountModal
-							isOpenDeleteFromAccount={isOpenDeleteFromAccount}
-							setIsOpenDeleteFromAccount={setIsOpenDeleteFromAccount}
-							handleDeleteFromAccount={handleDeleteFromAccount}
-						/>
-					</>
-				) : (
-					""
-				)}
-				{location.pathname === "/explorePlaylists" ? (
-					<>
-						<button
-							className="btn-primary"
-							onClick={(event) => {
-								event.preventDefault();
-								setIsOpenPlaylist(true);
-							}}
-						>
-							Add to Playlist
-						</button>
-						<SaveToPlaylistModal
-							isOpen={isOpenPlaylist}
-							setIsOpen={setIsOpenPlaylist}
-							handleSaveToPlaylist={handleSaveToPlaylist}
-							savePlaylistVideo={savePlaylistVideo}
-							setSavePlaylistVideo={setSavePlaylistVideo}
-							userPlaylists={userPlaylists}
-						/>
-					</>
-				) : (
-					""
-				)}
+					) : (
+						""
+					)}
+					{location.pathname === "/" ? (
+						<>
+							<button
+								className="btn-primary"
+								onClick={(event) => {
+									event.preventDefault();
+									setIsOpenPlaylist(true);
+								}}
+							>
+								Add to Playlist
+							</button>
+							<SaveToPlaylistModal
+								isOpen={isOpenPlaylist}
+								setIsOpen={setIsOpenPlaylist}
+								handleSaveToPlaylist={handleSaveToPlaylist}
+								savePlaylistVideo={savePlaylistVideo}
+								setSavePlaylistVideo={setSavePlaylistVideo}
+								userPlaylists={userPlaylists}
+							/>
+							<button
+								className="btn-delete"
+								onClick={(event) => {
+									event.preventDefault();
+									setIsOpenDeleteFromAccount(true);
+								}}
+							>
+								Delete From Account
+							</button>
+							<DeleteFromAccountModal
+								isOpenDeleteFromAccount={isOpenDeleteFromAccount}
+								setIsOpenDeleteFromAccount={setIsOpenDeleteFromAccount}
+								handleDeleteFromAccount={handleDeleteFromAccount}
+							/>
+						</>
+					) : (
+						""
+					)}
+					{location.pathname === "/explorePlaylists" ? (
+						<>
+							<button
+								className="btn-primary"
+								onClick={(event) => {
+									event.preventDefault();
+									setIsOpenPlaylist(true);
+								}}
+							>
+								Add to Playlist
+							</button>
+							<SaveToPlaylistModal
+								isOpen={isOpenPlaylist}
+								setIsOpen={setIsOpenPlaylist}
+								handleSaveToPlaylist={handleSaveToPlaylist}
+								savePlaylistVideo={savePlaylistVideo}
+								setSavePlaylistVideo={setSavePlaylistVideo}
+								userPlaylists={userPlaylists}
+							/>
+						</>
+					) : (
+						""
+					)}
+				</div>
 			</section>
 		</>
 	);
