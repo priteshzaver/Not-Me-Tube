@@ -1,6 +1,26 @@
 # Not Me Tube - README
 
-Not Me Tube is a web application that allows users to search for and watch videos using YouTube's API, create playlists, and explore other users' playlists. The application is built using ReactJS and C#/.NET and utilizes a number of tools including YouTube API, Firebase, Tailwind CSS, OAuth, Headless UI, and React Icons.
+Not Me Tube is my final capstone project for the full-time web developer bootcamp (C#/.NET) cohort at Nashville Software School. The application consists of a front-end written in React JS and a back-end written in C#. It allows users to search for and watch videos using YouTube's API, create playlists, and explore other users' playlists.
+
+## Technologies Used
+
+Not Me Tube is built using the following technologies:
+
+- React JS: A popular JavaScript library for building user interfaces.
+
+- C#/.NET: A framework for building scalable and secure web applications.
+
+- YouTube API: Provides functionality for searching, viewing, and uploading videos on YouTube.
+
+- Firebase: A mobile and web application development platform that provides various services like authentication, real-time databases, and hosting.
+
+- Tailwind CSS: A utility-first CSS framework that allows for rapid UI development.
+
+- OAuth: A standard protocol for allowing third-party applications to access user data on a website, without giving them the user's password.
+
+- Headless UI: A set of completely unstyled, fully accessible UI components for React.
+
+- React Icons: A library of customizable icons for React applications.
 
 ## Installation
 
