@@ -19,12 +19,14 @@ namespace NotMeTube.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT p.Id AS PlaylistId, p.Name, p.Description, p.UserProfileId AS PlaylistUserProfileId, p.IsPublic,
+                                        upp.DisplayName,
                                         v.Id AS VideoId, v.Title AS VideoTitle, v.Description AS VideoDescription, v.YouTubeVideoId, v.DateCreated, v.UserProfileId AS VideoUserProfileId, v.IsApproved,
-                                        up.DisplayName
+                                        upv.DisplayName
                                         FROM Playlist p
                                         LEFT JOIN PlaylistVideo pv ON p.Id = pv.PlaylistId
                                         LEFT JOIN Video v ON pv.VideoId = v.Id
-                                        LEFT JOIN UserProfile up ON v.UserProfileId = up.Id";
+                                        LEFT JOIN UserProfile upp ON p.UserProfileId = upp.Id
+                                        LEFT JOIN UserProfile upv ON v.UserProfileId = upv.Id";
                     using (var reader = cmd.ExecuteReader())
                     {
                         var playlists = new List<Playlist>();

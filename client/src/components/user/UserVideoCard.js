@@ -4,27 +4,27 @@ import UserContext from "../../UserContext";
 import { deleteVideoFromAccount, deleteVideoFromPlaylist, saveVideoToPlaylist } from "../../modules/videoManager";
 import { SaveToPlaylistModal } from "../search/SaveToPlaylistModal";
 import { DeleteFromAccountModal } from "./DeleteFromAccountModal";
+import { DeleteFromPlaylistModal } from "./DeleteFromPlaylistModal";
 
 export const UserVideoCard = ({ video, playlist, userPlaylists }) => {
 	const location = useLocation();
 	const { currentUser } = useContext(UserContext);
 	const [isOpenPlaylist, setIsOpenPlaylist] = useState(false);
 	const [isOpenDeleteFromAccount, setIsOpenDeleteFromAccount] = useState(false);
+	const [isOpenDeleteFromPlaylist, setIsOpenDeleteFromPlaylist] = useState(false);
 	const [savePlaylistVideo, setSavePlaylistVideo] = useState({
 		playlistId: 0,
 		videoId: video.id,
 	});
 	const handleDeleteFromPlaylist = () => {
-		if (window.confirm("Are you sure you want to delete this video from the playlist?")) {
-			const sendDeleteToApi = {
-				playlistId: playlist.id,
-				videoId: video.id,
-			};
-			deleteVideoFromPlaylist(sendDeleteToApi).then(() => {
-				alert("This video was successfully deleted from your playlist!");
-				window.location.reload();
-			});
-		}
+		const sendDeleteToApi = {
+			playlistId: playlist.id,
+			videoId: video.id,
+		};
+		deleteVideoFromPlaylist(sendDeleteToApi).then(() => {
+			alert("This video was successfully deleted from your playlist!");
+			window.location.reload();
+		});
 	};
 	const handleDeleteFromAccount = () => {
 		deleteVideoFromAccount(video.id).then(() => {
@@ -67,14 +67,22 @@ export const UserVideoCard = ({ video, playlist, userPlaylists }) => {
 				<div className="flex-grow"></div>
 				<div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row sm:px-6">
 					{location.pathname === `/userPlaylists/${currentUser?.id}` ? (
-						<button
-							className="btn-delete"
-							onClick={() => {
-								handleDeleteFromPlaylist();
-							}}
-						>
-							Delete from Playlist
-						</button>
+						<>
+							<button
+								className="btn-delete"
+								onClick={(event) => {
+									event.preventDefault();
+									setIsOpenDeleteFromPlaylist(true);
+								}}
+							>
+								Delete from Playlist
+							</button>
+							<DeleteFromPlaylistModal
+								isOpenDeleteFromPlaylist={isOpenDeleteFromPlaylist}
+								handleDeleteFromPlaylist={handleDeleteFromPlaylist}
+								setIsOpenDeleteFromPlaylist={setIsOpenDeleteFromPlaylist}
+							/>
+						</>
 					) : (
 						""
 					)}

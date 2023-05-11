@@ -26,12 +26,12 @@ export const VideoDetails = () => {
 							allowFullScreen
 						/>
 					</div>
-					<div className="mt-2 h-fit rounded-md bg-emerald-100">
+					<div className="mt-2 h-fit rounded-md bg-white">
 						<h3 className="ml-2 text-3xl font-semibold">{video.title}</h3>
-						<div className="flex flex-row">
+						<div className="ml-2 flex flex-row">
 							<div className="flex w-2/3 flex-col">
 								<h5>{video.description}</h5>
-								<div>{video.userProfile?.displayName}</div>
+								<div>Owner: {video.userProfile?.displayName}</div>
 							</div>
 						</div>
 					</div>
