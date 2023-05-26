@@ -18,7 +18,7 @@ export const ExplorePlaylists = () => {
 			const otherPlaylists = allPlaylists.filter((playlist) => playlist.userProfileId !== currentUser.id);
 			setFilteredPlaylists(otherPlaylists);
 		}
-	}, [allPlaylists]);
+	}, [currentUser, allPlaylists]);
 
 	useEffect(() => {
 		if (currentUser) {

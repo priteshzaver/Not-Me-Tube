@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 export const Playlist = ({ playlist, userPlaylists }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const { id } = useParams();
-
+	
 	return (
 		<section className="h-[70vh] w-4/5 justify-self-center overflow-y-scroll rounded-md  shadow-lg">
 			<div className="bg-white px-6 py-4">
