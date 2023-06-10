@@ -16,8 +16,6 @@ Not Me Tube is built using the following technologies:
 
 - Tailwind CSS: A utility-first CSS framework that allows for rapid UI development.
 
-- OAuth: A standard protocol for allowing third-party applications to access user data on a website, without giving them the user's password.
-
 - Headless UI: A set of completely unstyled, fully accessible UI components for React.
 
 - React Icons: A library of customizable icons for React applications.
